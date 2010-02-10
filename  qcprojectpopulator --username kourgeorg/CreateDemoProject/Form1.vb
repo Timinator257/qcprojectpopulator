@@ -199,27 +199,62 @@ Public Class Form1
         Critical = Val((DefectsNum.Text) * (CriticalTextBox.Text)) / 100
         veryHigh = Val((DefectsNum.Text) * (VeryHighTextBox.Text)) / 100 + Critical
         high = Val((DefectsNum.Text) * (HighTextBox.Text)) / 100 + veryHigh
-        meduim = Val((DefectsNum.Text) * (LowTextBox.Text)) / 100 + high
+        meduim = Val((DefectsNum.Text) * (MeduimTextBox.Text)) / 100 + high
         low = Val((DefectsNum.Text) * (LowTextBox.Text)) / 100 + meduim
 
+        'add defects and determine severity and priority
         For i = 1 To Val(DefectsNum.Text)
             mybug = bfact.AddItem("Defect" & i)
             mybug.Summary = "Defect" & i & " " & LoginTime
             mybug.Status = "New"
             If i <= Critical Then
                 mybug.Priority = "5-Urgent"
-            ElseIf i > Critical And i <= veryHigh Then
+                mybug.Field("BG_SEVERITY") = "5-Urgent"
+            ElseIf i <= veryHigh Then
                 mybug.Priority = "4-Very High"
+                mybug.Field("BG_SEVERITY") = "4-Very High"
             ElseIf i <= high Then
                 mybug.Priority = "3-High"
-            ElseIf i > high And i <= meduim Then
+                mybug.Field("BG_SEVERITY") = "3-High"
+            ElseIf i <= meduim Then
                 mybug.Priority = "2-Medium"
+                mybug.Field("BG_SEVERITY") = "2-Medium"
             Else
                 mybug.Priority = "1-Low"
+                mybug.Field("BG_SEVERITY") = "1-Low"
             End If
             mybug.DetectedBy = Username.Text
             mybug.Post()
         Next i
+
+        'Handle statuses
+        Dim open, fixed, closed, rejected, reopen As Integer
+        open = Val((DefectsNum.Text) * (OpenTextBox.Text)) / 100
+        fixed = Val((DefectsNum.Text) * (FixTextBox.Text)) / 100 + open
+        closed = Val((DefectsNum.Text) * (CloseTextBox.Text)) / 100 + fixed
+        rejected = Val((DefectsNum.Text) * (RejectTextBox.Text)) / 100 + closed
+        reopen = Val((DefectsNum.Text) * (ReopenTextBox.Text)) / 100 + rejected
+
+        Dim BugList As TDAPIOLELib.List
+        BugList = bfact.NewList("")
+
+        For i = 1 To BugList.Count
+            mybug = BugList.Item(i)
+            If i <= open Then
+                mybug.Status = "Open"
+            ElseIf i <= fixed Then
+                mybug.Status = "Fixed"
+            ElseIf i <= closed Then
+                mybug.Status = "Closed"
+            ElseIf i <= rejected Then
+                mybug.Status = "Rejected"
+            ElseIf i <= reopen Then
+                mybug.Status = "Reopen"
+            Else
+                Exit For
+            End If
+            mybug.Post()
+        Next
 
     End Sub
 
@@ -491,30 +526,58 @@ Public Class Form1
         Disconnect()
     End Sub
 
+    Private Sub Update_Low_TextBox()
+        Dim newvalue = 100 - Val(CriticalTextBox.Text) - Val(VeryHighTextBox.Text) - Val(HighTextBox.Text) - Val(MeduimTextBox.Text)
+        If newvalue < 0 Then
+            MessageBox.Show("Illigal Distribution")
+            Return
+        End If
+        LowTextBox.Text = newvalue.ToString
+    End Sub
 
     Private Sub HighTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HighTextBox.TextChanged
-        Update_Total_TextBox()
+        Update_Low_TextBox()
     End Sub
 
-
-    Private Sub Update_Total_TextBox()
-        TotalTextBox.Text = val(CriticalTextBox.Text)+val(VeryHighTextBox.Text)+Val(HighTextBox.Text) + Val(MeduimTextBox.Text) + Val(LowTextBox.Text)
-    End Sub
-
-    Private Sub MeduimTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Update_Total_TextBox()
-    End Sub
-
-    Private Sub LowTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MeduimTextBox.TextChanged, LowTextBox.TextChanged
-        Update_Total_TextBox()
+    Private Sub MeduimTextBox_TextChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MeduimTextBox.TextChanged
+        Update_Low_TextBox()
     End Sub
 
     Private Sub CriticalTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CriticalTextBox.TextChanged
-        Update_Total_TextBox()
+        Update_Low_TextBox()
     End Sub
 
     Private Sub VeryHighTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VeryHighTextBox.TextChanged
-        Update_Total_TextBox()
+        Update_Low_TextBox()
+    End Sub
+    Private Sub Update_New_TextBox()
+        Dim newvalue = 100 - Val(OpenTextBox.Text) - Val(FixTextBox.Text) - Val(CloseTextBox.Text) - Val(ReopenTextBox.Text) - Val(RejectTextBox.Text)
+        If newvalue < 0 Then
+            MessageBox.Show("Illigal Distribution")
+            Return
+        End If
+        NewTextBox.Text = newvalue.ToString
+    End Sub
+
+
+    Private Sub OpenTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenTextBox.TextChanged
+        Update_New_TextBox()
+    End Sub
+
+    Private Sub FixTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FixTextBox.TextChanged
+        Update_New_TextBox()
+    End Sub
+
+    Private Sub ClosedTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseTextBox.TextChanged
+        Update_New_TextBox()
+    End Sub
+
+    Private Sub ReopenTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReopenTextBox.TextChanged
+        Update_New_TextBox()
+    End Sub
+
+    Private Sub RejectTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RejectTextBox.TextChanged
+        Update_New_TextBox()
     End Sub
 
 
