@@ -1,0 +1,17 @@
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\bin\Debug\CreateDemoProject.exe
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\bin\Debug\CreateDemoProject.pdb
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\bin\Debug\CreateDemoProject.xml
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.Form1.resources
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.Resources.resources
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.vbproj.GenerateResource.Cache
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.exe
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.xml
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.pdb
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\bin\Debug\Interop.TDAPIOLELib.dll
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\Interop.TDAPIOLELib.dll
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\CreateDemoProject.vbproj.ResolveComReference.cache
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\Interop.QCClientUI.dll
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\bin\Debug\Interop.QCClientUI.dll
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Debug\Interop.SACLIENTLib.dll
+C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\bin\Debug\Interop.SACLIENTLib.dll
