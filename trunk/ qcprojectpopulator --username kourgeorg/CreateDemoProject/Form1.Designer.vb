@@ -45,9 +45,7 @@ Partial Class Form1
         Me.DefectsNum = New System.Windows.Forms.TextBox
         Me.DefectsCheckBox = New System.Windows.Forms.CheckBox
         Me.TabPage7 = New System.Windows.Forms.TabPage
-        Me.TotalTextBox = New System.Windows.Forms.TextBox
         Me.Label29 = New System.Windows.Forms.Label
-        Me.Label21 = New System.Windows.Forms.Label
         Me.Label28 = New System.Windows.Forms.Label
         Me.Label27 = New System.Windows.Forms.Label
         Me.Label26 = New System.Windows.Forms.Label
@@ -62,6 +60,25 @@ Partial Class Form1
         Me.LowTextBox = New System.Windows.Forms.TextBox
         Me.MeduimTextBox = New System.Windows.Forms.TextBox
         Me.HighTextBox = New System.Windows.Forms.TextBox
+        Me.TabPage8 = New System.Windows.Forms.TabPage
+        Me.Label41 = New System.Windows.Forms.Label
+        Me.NewTextBox = New System.Windows.Forms.TextBox
+        Me.Label42 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.Label17 = New System.Windows.Forms.Label
+        Me.Label33 = New System.Windows.Forms.Label
+        Me.Label34 = New System.Windows.Forms.Label
+        Me.Label35 = New System.Windows.Forms.Label
+        Me.ReopenTextBox = New System.Windows.Forms.TextBox
+        Me.RejectTextBox = New System.Windows.Forms.TextBox
+        Me.Label36 = New System.Windows.Forms.Label
+        Me.Label37 = New System.Windows.Forms.Label
+        Me.CloseLabel = New System.Windows.Forms.Label
+        Me.Label39 = New System.Windows.Forms.Label
+        Me.Label40 = New System.Windows.Forms.Label
+        Me.CloseTextBox = New System.Windows.Forms.TextBox
+        Me.FixTextBox = New System.Windows.Forms.TextBox
+        Me.OpenTextBox = New System.Windows.Forms.TextBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Label31 = New System.Windows.Forms.Label
         Me.TextBox2 = New System.Windows.Forms.TextBox
@@ -101,6 +118,7 @@ Partial Class Form1
         Me.TabControl1.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.TabPage7.SuspendLayout()
+        Me.TabPage8.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage5.SuspendLayout()
@@ -266,6 +284,7 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage6)
         Me.TabControl1.Controls.Add(Me.TabPage7)
+        Me.TabControl1.Controls.Add(Me.TabPage8)
         Me.TabControl1.Location = New System.Drawing.Point(0, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -315,9 +334,7 @@ Partial Class Form1
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage7.Controls.Add(Me.TotalTextBox)
         Me.TabPage7.Controls.Add(Me.Label29)
-        Me.TabPage7.Controls.Add(Me.Label21)
         Me.TabPage7.Controls.Add(Me.Label28)
         Me.TabPage7.Controls.Add(Me.Label27)
         Me.TabPage7.Controls.Add(Me.Label26)
@@ -339,39 +356,21 @@ Partial Class Form1
         Me.TabPage7.TabIndex = 1
         Me.TabPage7.Text = "Severity"
         '
-        'TotalTextBox
-        '
-        Me.TotalTextBox.Enabled = False
-        Me.TotalTextBox.Location = New System.Drawing.Point(307, 85)
-        Me.TotalTextBox.Name = "TotalTextBox"
-        Me.TotalTextBox.Size = New System.Drawing.Size(49, 20)
-        Me.TotalTextBox.TabIndex = 25
-        Me.TotalTextBox.Text = "0"
-        '
         'Label29
         '
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.Location = New System.Drawing.Point(106, 54)
+        Me.Label29.Location = New System.Drawing.Point(233, 38)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(20, 16)
         Me.Label29.TabIndex = 34
         Me.Label29.Text = "%"
         '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(253, 89)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(42, 13)
-        Me.Label21.TabIndex = 22
-        Me.Label21.Text = "Total %"
-        '
         'Label28
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(106, 34)
+        Me.Label28.Location = New System.Drawing.Point(233, 14)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(20, 16)
         Me.Label28.TabIndex = 33
@@ -381,7 +380,7 @@ Partial Class Form1
         '
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(106, 14)
+        Me.Label27.Location = New System.Drawing.Point(106, 66)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(20, 16)
         Me.Label27.TabIndex = 32
@@ -391,7 +390,7 @@ Partial Class Form1
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(233, 37)
+        Me.Label26.Location = New System.Drawing.Point(106, 42)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(20, 16)
         Me.Label26.TabIndex = 31
@@ -401,7 +400,7 @@ Partial Class Form1
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(233, 15)
+        Me.Label25.Location = New System.Drawing.Point(106, 13)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(20, 16)
         Me.Label25.TabIndex = 30
@@ -409,7 +408,7 @@ Partial Class Form1
         '
         'CriticalTextBox
         '
-        Me.CriticalTextBox.Location = New System.Drawing.Point(184, 11)
+        Me.CriticalTextBox.Location = New System.Drawing.Point(57, 11)
         Me.CriticalTextBox.Name = "CriticalTextBox"
         Me.CriticalTextBox.Size = New System.Drawing.Size(49, 20)
         Me.CriticalTextBox.TabIndex = 29
@@ -417,7 +416,7 @@ Partial Class Form1
         '
         'VeryHighTextBox
         '
-        Me.VeryHighTextBox.Location = New System.Drawing.Point(184, 32)
+        Me.VeryHighTextBox.Location = New System.Drawing.Point(57, 38)
         Me.VeryHighTextBox.Name = "VeryHighTextBox"
         Me.VeryHighTextBox.Size = New System.Drawing.Size(49, 20)
         Me.VeryHighTextBox.TabIndex = 28
@@ -426,7 +425,7 @@ Partial Class Form1
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(130, 14)
+        Me.Label23.Location = New System.Drawing.Point(3, 15)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(38, 13)
         Me.Label23.TabIndex = 27
@@ -435,7 +434,7 @@ Partial Class Form1
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(130, 35)
+        Me.Label22.Location = New System.Drawing.Point(3, 41)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(53, 13)
         Me.Label22.TabIndex = 26
@@ -444,7 +443,7 @@ Partial Class Form1
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(4, 54)
+        Me.Label20.Location = New System.Drawing.Point(139, 40)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(27, 13)
         Me.Label20.TabIndex = 24
@@ -453,7 +452,7 @@ Partial Class Form1
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(2, 34)
+        Me.Label19.Location = New System.Drawing.Point(129, 16)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(44, 13)
         Me.Label19.TabIndex = 23
@@ -462,7 +461,7 @@ Partial Class Form1
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(3, 14)
+        Me.Label18.Location = New System.Drawing.Point(3, 68)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(29, 13)
         Me.Label18.TabIndex = 21
@@ -470,15 +469,16 @@ Partial Class Form1
         '
         'LowTextBox
         '
-        Me.LowTextBox.Location = New System.Drawing.Point(57, 51)
+        Me.LowTextBox.Enabled = False
+        Me.LowTextBox.Location = New System.Drawing.Point(184, 36)
         Me.LowTextBox.Name = "LowTextBox"
         Me.LowTextBox.Size = New System.Drawing.Size(49, 20)
         Me.LowTextBox.TabIndex = 20
-        Me.LowTextBox.Text = "0"
+        Me.LowTextBox.Text = "100"
         '
         'MeduimTextBox
         '
-        Me.MeduimTextBox.Location = New System.Drawing.Point(57, 31)
+        Me.MeduimTextBox.Location = New System.Drawing.Point(184, 12)
         Me.MeduimTextBox.Name = "MeduimTextBox"
         Me.MeduimTextBox.Size = New System.Drawing.Size(49, 20)
         Me.MeduimTextBox.TabIndex = 19
@@ -486,11 +486,202 @@ Partial Class Form1
         '
         'HighTextBox
         '
-        Me.HighTextBox.Location = New System.Drawing.Point(57, 11)
+        Me.HighTextBox.Location = New System.Drawing.Point(57, 64)
         Me.HighTextBox.Name = "HighTextBox"
         Me.HighTextBox.Size = New System.Drawing.Size(49, 20)
         Me.HighTextBox.TabIndex = 18
         Me.HighTextBox.Text = "0"
+        '
+        'TabPage8
+        '
+        Me.TabPage8.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage8.Controls.Add(Me.Label41)
+        Me.TabPage8.Controls.Add(Me.NewTextBox)
+        Me.TabPage8.Controls.Add(Me.Label42)
+        Me.TabPage8.Controls.Add(Me.Label10)
+        Me.TabPage8.Controls.Add(Me.Label17)
+        Me.TabPage8.Controls.Add(Me.Label33)
+        Me.TabPage8.Controls.Add(Me.Label34)
+        Me.TabPage8.Controls.Add(Me.Label35)
+        Me.TabPage8.Controls.Add(Me.ReopenTextBox)
+        Me.TabPage8.Controls.Add(Me.RejectTextBox)
+        Me.TabPage8.Controls.Add(Me.Label36)
+        Me.TabPage8.Controls.Add(Me.Label37)
+        Me.TabPage8.Controls.Add(Me.CloseLabel)
+        Me.TabPage8.Controls.Add(Me.Label39)
+        Me.TabPage8.Controls.Add(Me.Label40)
+        Me.TabPage8.Controls.Add(Me.CloseTextBox)
+        Me.TabPage8.Controls.Add(Me.FixTextBox)
+        Me.TabPage8.Controls.Add(Me.OpenTextBox)
+        Me.TabPage8.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage8.Name = "TabPage8"
+        Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage8.Size = New System.Drawing.Size(370, 111)
+        Me.TabPage8.TabIndex = 2
+        Me.TabPage8.Text = "Status"
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Location = New System.Drawing.Point(235, 60)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(20, 16)
+        Me.Label41.TabIndex = 52
+        Me.Label41.Text = "%"
+        '
+        'NewTextBox
+        '
+        Me.NewTextBox.Enabled = False
+        Me.NewTextBox.Location = New System.Drawing.Point(186, 58)
+        Me.NewTextBox.Name = "NewTextBox"
+        Me.NewTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.NewTextBox.TabIndex = 51
+        Me.NewTextBox.Text = "100"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(134, 62)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(29, 13)
+        Me.Label42.TabIndex = 50
+        Me.Label42.Text = "New"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(108, 60)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(20, 16)
+        Me.Label10.TabIndex = 49
+        Me.Label10.Text = "%"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(108, 37)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(20, 16)
+        Me.Label17.TabIndex = 48
+        Me.Label17.Text = "%"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.Location = New System.Drawing.Point(108, 14)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(20, 16)
+        Me.Label33.TabIndex = 47
+        Me.Label33.Text = "%"
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(235, 37)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(20, 16)
+        Me.Label34.TabIndex = 46
+        Me.Label34.Text = "%"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Location = New System.Drawing.Point(235, 15)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(20, 16)
+        Me.Label35.TabIndex = 45
+        Me.Label35.Text = "%"
+        '
+        'ReopenTextBox
+        '
+        Me.ReopenTextBox.Location = New System.Drawing.Point(186, 11)
+        Me.ReopenTextBox.Name = "ReopenTextBox"
+        Me.ReopenTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.ReopenTextBox.TabIndex = 44
+        Me.ReopenTextBox.Text = "0"
+        '
+        'RejectTextBox
+        '
+        Me.RejectTextBox.Location = New System.Drawing.Point(186, 35)
+        Me.RejectTextBox.Name = "RejectTextBox"
+        Me.RejectTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.RejectTextBox.TabIndex = 43
+        Me.RejectTextBox.Text = "0"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(132, 14)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(45, 13)
+        Me.Label36.TabIndex = 42
+        Me.Label36.Text = "Reopen"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(132, 39)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(50, 13)
+        Me.Label37.TabIndex = 41
+        Me.Label37.Text = "Rejected"
+        '
+        'CloseLabel
+        '
+        Me.CloseLabel.AutoSize = True
+        Me.CloseLabel.Location = New System.Drawing.Point(6, 62)
+        Me.CloseLabel.Name = "CloseLabel"
+        Me.CloseLabel.Size = New System.Drawing.Size(39, 13)
+        Me.CloseLabel.TabIndex = 40
+        Me.CloseLabel.Text = "Closed"
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(4, 39)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(32, 13)
+        Me.Label39.TabIndex = 39
+        Me.Label39.Text = "Fixed"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(5, 14)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(33, 13)
+        Me.Label40.TabIndex = 38
+        Me.Label40.Text = "Open"
+        '
+        'CloseTextBox
+        '
+        Me.CloseTextBox.Location = New System.Drawing.Point(59, 58)
+        Me.CloseTextBox.Name = "CloseTextBox"
+        Me.CloseTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.CloseTextBox.TabIndex = 37
+        Me.CloseTextBox.Text = "0"
+        '
+        'FixTextBox
+        '
+        Me.FixTextBox.Location = New System.Drawing.Point(59, 35)
+        Me.FixTextBox.Name = "FixTextBox"
+        Me.FixTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.FixTextBox.TabIndex = 36
+        Me.FixTextBox.Text = "0"
+        '
+        'OpenTextBox
+        '
+        Me.OpenTextBox.Location = New System.Drawing.Point(59, 11)
+        Me.OpenTextBox.Name = "OpenTextBox"
+        Me.OpenTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.OpenTextBox.TabIndex = 35
+        Me.OpenTextBox.Text = "0"
         '
         'TabPage2
         '
@@ -825,6 +1016,8 @@ Partial Class Form1
         Me.TabPage6.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
+        Me.TabPage8.ResumeLayout(False)
+        Me.TabPage8.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
@@ -893,9 +1086,7 @@ Partial Class Form1
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents DefectsNum As System.Windows.Forms.TextBox
     Friend WithEvents DefectsCheckBox As System.Windows.Forms.CheckBox
-    Friend WithEvents TotalTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label29 As System.Windows.Forms.Label
-    Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents Label26 As System.Windows.Forms.Label
@@ -910,5 +1101,24 @@ Partial Class Form1
     Friend WithEvents LowTextBox As System.Windows.Forms.TextBox
     Friend WithEvents MeduimTextBox As System.Windows.Forms.TextBox
     Friend WithEvents HighTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents TabPage8 As System.Windows.Forms.TabPage
+    Friend WithEvents Label41 As System.Windows.Forms.Label
+    Friend WithEvents NewTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label42 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents Label33 As System.Windows.Forms.Label
+    Friend WithEvents Label34 As System.Windows.Forms.Label
+    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents ReopenTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents RejectTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label36 As System.Windows.Forms.Label
+    Friend WithEvents Label37 As System.Windows.Forms.Label
+    Friend WithEvents CloseLabel As System.Windows.Forms.Label
+    Friend WithEvents Label39 As System.Windows.Forms.Label
+    Friend WithEvents Label40 As System.Windows.Forms.Label
+    Friend WithEvents CloseTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents FixTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents OpenTextBox As System.Windows.Forms.TextBox
 
 End Class
