@@ -81,7 +81,7 @@ Partial Class Form1
         Me.OpenTextBox = New System.Windows.Forms.TextBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Label31 = New System.Windows.Forms.Label
-        Me.TextBox2 = New System.Windows.Forms.TextBox
+        Me.TracebilityTextBox = New System.Windows.Forms.TextBox
         Me.Label30 = New System.Windows.Forms.Label
         Me.TestCoverageTextBox = New System.Windows.Forms.TextBox
         Me.Label13 = New System.Windows.Forms.Label
@@ -90,14 +90,25 @@ Partial Class Form1
         Me.ReqCheckBox = New System.Windows.Forms.CheckBox
         Me.ReqsNum = New System.Windows.Forms.TextBox
         Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.Label21 = New System.Windows.Forms.Label
+        Me.StepsTextBox = New System.Windows.Forms.TextBox
         Me.Label14 = New System.Windows.Forms.Label
         Me.TestsInLevel = New System.Windows.Forms.TextBox
         Me.Label11 = New System.Windows.Forms.Label
         Me.TestDirLevels = New System.Windows.Forms.TextBox
         Me.Label12 = New System.Windows.Forms.Label
-        Me.DirsInLevel = New System.Windows.Forms.TextBox
+        Me.TestDirsInLevel = New System.Windows.Forms.TextBox
         Me.TestCheckBox = New System.Windows.Forms.CheckBox
         Me.TabPage4 = New System.Windows.Forms.TabPage
+        Me.Label45 = New System.Windows.Forms.Label
+        Me.TestInstInSet = New System.Windows.Forms.TextBox
+        Me.TestLAbCheckBox = New System.Windows.Forms.CheckBox
+        Me.Label38 = New System.Windows.Forms.Label
+        Me.SetsinDir = New System.Windows.Forms.TextBox
+        Me.Label43 = New System.Windows.Forms.Label
+        Me.SetDirsLevels = New System.Windows.Forms.TextBox
+        Me.Label44 = New System.Windows.Forms.Label
+        Me.SetDirsInLevel = New System.Windows.Forms.TextBox
         Me.TabPage5 = New System.Windows.Forms.TabPage
         Me.LinksBetweenDefects = New System.Windows.Forms.TextBox
         Me.Label32 = New System.Windows.Forms.Label
@@ -121,6 +132,7 @@ Partial Class Form1
         Me.TabPage8.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -319,7 +331,7 @@ Partial Class Form1
         Me.DefectsNum.Name = "DefectsNum"
         Me.DefectsNum.Size = New System.Drawing.Size(49, 20)
         Me.DefectsNum.TabIndex = 27
-        Me.DefectsNum.Text = "100"
+        Me.DefectsNum.Text = "0"
         '
         'DefectsCheckBox
         '
@@ -687,7 +699,7 @@ Partial Class Form1
         '
         Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage2.Controls.Add(Me.Label31)
-        Me.TabPage2.Controls.Add(Me.TextBox2)
+        Me.TabPage2.Controls.Add(Me.TracebilityTextBox)
         Me.TabPage2.Controls.Add(Me.Label30)
         Me.TabPage2.Controls.Add(Me.TestCoverageTextBox)
         Me.TabPage2.Controls.Add(Me.Label13)
@@ -711,12 +723,12 @@ Partial Class Form1
         Me.Label31.TabIndex = 22
         Me.Label31.Text = "Req Tracability"
         '
-        'TextBox2
+        'TracebilityTextBox
         '
-        Me.TextBox2.Location = New System.Drawing.Point(112, 96)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(49, 20)
-        Me.TextBox2.TabIndex = 21
+        Me.TracebilityTextBox.Location = New System.Drawing.Point(109, 96)
+        Me.TracebilityTextBox.Name = "TracebilityTextBox"
+        Me.TracebilityTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.TracebilityTextBox.TabIndex = 21
         '
         'Label30
         '
@@ -729,7 +741,7 @@ Partial Class Form1
         '
         'TestCoverageTextBox
         '
-        Me.TestCoverageTextBox.Location = New System.Drawing.Point(112, 72)
+        Me.TestCoverageTextBox.Location = New System.Drawing.Point(109, 72)
         Me.TestCoverageTextBox.Name = "TestCoverageTextBox"
         Me.TestCoverageTextBox.Size = New System.Drawing.Size(49, 20)
         Me.TestCoverageTextBox.TabIndex = 19
@@ -737,7 +749,7 @@ Partial Class Form1
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(5, 28)
+        Me.Label13.Location = New System.Drawing.Point(3, 27)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(66, 13)
         Me.Label13.TabIndex = 18
@@ -745,7 +757,7 @@ Partial Class Form1
         '
         'ReqLevels
         '
-        Me.ReqLevels.Location = New System.Drawing.Point(112, 24)
+        Me.ReqLevels.Location = New System.Drawing.Point(109, 24)
         Me.ReqLevels.Name = "ReqLevels"
         Me.ReqLevels.Size = New System.Drawing.Size(49, 20)
         Me.ReqLevels.TabIndex = 17
@@ -753,7 +765,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(5, 51)
+        Me.Label6.Location = New System.Drawing.Point(3, 51)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(105, 13)
         Me.Label6.TabIndex = 16
@@ -771,7 +783,7 @@ Partial Class Form1
         '
         'ReqsNum
         '
-        Me.ReqsNum.Location = New System.Drawing.Point(112, 48)
+        Me.ReqsNum.Location = New System.Drawing.Point(109, 48)
         Me.ReqsNum.Name = "ReqsNum"
         Me.ReqsNum.Size = New System.Drawing.Size(49, 20)
         Me.ReqsNum.TabIndex = 13
@@ -779,12 +791,14 @@ Partial Class Form1
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage3.Controls.Add(Me.Label21)
+        Me.TabPage3.Controls.Add(Me.StepsTextBox)
         Me.TabPage3.Controls.Add(Me.Label14)
         Me.TabPage3.Controls.Add(Me.TestsInLevel)
         Me.TabPage3.Controls.Add(Me.Label11)
         Me.TabPage3.Controls.Add(Me.TestDirLevels)
         Me.TabPage3.Controls.Add(Me.Label12)
-        Me.TabPage3.Controls.Add(Me.DirsInLevel)
+        Me.TabPage3.Controls.Add(Me.TestDirsInLevel)
         Me.TabPage3.Controls.Add(Me.TestCheckBox)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
@@ -792,6 +806,22 @@ Partial Class Form1
         Me.TabPage3.Size = New System.Drawing.Size(374, 138)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TestPlan"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(2, 97)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(69, 13)
+        Me.Label21.TabIndex = 28
+        Me.Label21.Text = "Steps in Test"
+        '
+        'StepsTextBox
+        '
+        Me.StepsTextBox.Location = New System.Drawing.Point(105, 93)
+        Me.StepsTextBox.Name = "StepsTextBox"
+        Me.StepsTextBox.Size = New System.Drawing.Size(49, 20)
+        Me.StepsTextBox.TabIndex = 27
         '
         'Label14
         '
@@ -804,7 +834,7 @@ Partial Class Form1
         '
         'TestsInLevel
         '
-        Me.TestsInLevel.Location = New System.Drawing.Point(79, 69)
+        Me.TestsInLevel.Location = New System.Drawing.Point(105, 69)
         Me.TestsInLevel.Name = "TestsInLevel"
         Me.TestsInLevel.Size = New System.Drawing.Size(49, 20)
         Me.TestsInLevel.TabIndex = 25
@@ -814,13 +844,13 @@ Partial Class Form1
         Me.Label11.AutoSize = True
         Me.Label11.Location = New System.Drawing.Point(2, 28)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(67, 13)
+        Me.Label11.Size = New System.Drawing.Size(103, 13)
         Me.Label11.TabIndex = 24
-        Me.Label11.Text = "levels of Dirs"
+        Me.Label11.Text = "Levels of Directories"
         '
         'TestDirLevels
         '
-        Me.TestDirLevels.Location = New System.Drawing.Point(79, 22)
+        Me.TestDirLevels.Location = New System.Drawing.Point(105, 22)
         Me.TestDirLevels.Name = "TestDirLevels"
         Me.TestDirLevels.Size = New System.Drawing.Size(49, 20)
         Me.TestDirLevels.TabIndex = 23
@@ -830,16 +860,16 @@ Partial Class Form1
         Me.Label12.AutoSize = True
         Me.Label12.Location = New System.Drawing.Point(2, 49)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(61, 13)
+        Me.Label12.Size = New System.Drawing.Size(97, 13)
         Me.Label12.TabIndex = 22
-        Me.Label12.Text = "Dirs in level"
+        Me.Label12.Text = "Directories in Level"
         '
-        'DirsInLevel
+        'TestDirsInLevel
         '
-        Me.DirsInLevel.Location = New System.Drawing.Point(79, 45)
-        Me.DirsInLevel.Name = "DirsInLevel"
-        Me.DirsInLevel.Size = New System.Drawing.Size(49, 20)
-        Me.DirsInLevel.TabIndex = 20
+        Me.TestDirsInLevel.Location = New System.Drawing.Point(105, 45)
+        Me.TestDirsInLevel.Name = "TestDirsInLevel"
+        Me.TestDirsInLevel.Size = New System.Drawing.Size(49, 20)
+        Me.TestDirsInLevel.TabIndex = 20
         '
         'TestCheckBox
         '
@@ -854,12 +884,95 @@ Partial Class Form1
         'TabPage4
         '
         Me.TabPage4.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage4.Controls.Add(Me.Label45)
+        Me.TabPage4.Controls.Add(Me.TestInstInSet)
+        Me.TabPage4.Controls.Add(Me.TestLAbCheckBox)
+        Me.TabPage4.Controls.Add(Me.Label38)
+        Me.TabPage4.Controls.Add(Me.SetsinDir)
+        Me.TabPage4.Controls.Add(Me.Label43)
+        Me.TabPage4.Controls.Add(Me.SetDirsLevels)
+        Me.TabPage4.Controls.Add(Me.Label44)
+        Me.TabPage4.Controls.Add(Me.SetDirsInLevel)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage4.Size = New System.Drawing.Size(374, 138)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TestLab"
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(2, 97)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(104, 13)
+        Me.Label45.TabIndex = 35
+        Me.Label45.Text = "Test Insances in Set"
+        '
+        'TestInstInSet
+        '
+        Me.TestInstInSet.Location = New System.Drawing.Point(112, 94)
+        Me.TestInstInSet.Name = "TestInstInSet"
+        Me.TestInstInSet.Size = New System.Drawing.Size(49, 20)
+        Me.TestInstInSet.TabIndex = 34
+        '
+        'TestLAbCheckBox
+        '
+        Me.TestLAbCheckBox.AutoSize = True
+        Me.TestLAbCheckBox.Location = New System.Drawing.Point(6, 6)
+        Me.TestLAbCheckBox.Name = "TestLAbCheckBox"
+        Me.TestLAbCheckBox.Size = New System.Drawing.Size(61, 17)
+        Me.TestLAbCheckBox.TabIndex = 33
+        Me.TestLAbCheckBox.Text = "Include"
+        Me.TestLAbCheckBox.UseVisualStyleBackColor = True
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(2, 74)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(88, 13)
+        Me.Label38.TabIndex = 32
+        Me.Label38.Text = "Test Sets in level"
+        '
+        'SetsinDir
+        '
+        Me.SetsinDir.Location = New System.Drawing.Point(112, 70)
+        Me.SetsinDir.Name = "SetsinDir"
+        Me.SetsinDir.Size = New System.Drawing.Size(49, 20)
+        Me.SetsinDir.TabIndex = 31
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(2, 28)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(103, 13)
+        Me.Label43.TabIndex = 30
+        Me.Label43.Text = "Levels of Directories"
+        '
+        'SetDirsLevels
+        '
+        Me.SetDirsLevels.Location = New System.Drawing.Point(112, 24)
+        Me.SetDirsLevels.Name = "SetDirsLevels"
+        Me.SetDirsLevels.Size = New System.Drawing.Size(49, 20)
+        Me.SetDirsLevels.TabIndex = 29
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(2, 51)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(97, 13)
+        Me.Label44.TabIndex = 28
+        Me.Label44.Text = "Directories in Level"
+        '
+        'SetDirsInLevel
+        '
+        Me.SetDirsInLevel.Location = New System.Drawing.Point(112, 47)
+        Me.SetDirsInLevel.Name = "SetDirsInLevel"
+        Me.SetDirsInLevel.Size = New System.Drawing.Size(49, 20)
+        Me.SetDirsInLevel.TabIndex = 27
         '
         'TabPage5
         '
@@ -1022,6 +1135,8 @@ Partial Class Form1
         Me.TabPage2.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
         Me.Panel3.ResumeLayout(False)
@@ -1054,7 +1169,7 @@ Partial Class Form1
     Friend WithEvents ReqCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents DirsInLevel As System.Windows.Forms.TextBox
+    Friend WithEvents TestDirsInLevel As System.Windows.Forms.TextBox
     Friend WithEvents TestCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents TestDirLevels As System.Windows.Forms.TextBox
@@ -1074,7 +1189,7 @@ Partial Class Form1
     Friend WithEvents DomainComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents TracebilityTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label30 As System.Windows.Forms.Label
     Friend WithEvents TestCoverageTextBox As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
@@ -1120,5 +1235,16 @@ Partial Class Form1
     Friend WithEvents CloseTextBox As System.Windows.Forms.TextBox
     Friend WithEvents FixTextBox As System.Windows.Forms.TextBox
     Friend WithEvents OpenTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents StepsTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents TestLAbCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents Label38 As System.Windows.Forms.Label
+    Friend WithEvents SetsinDir As System.Windows.Forms.TextBox
+    Friend WithEvents Label43 As System.Windows.Forms.Label
+    Friend WithEvents SetDirsLevels As System.Windows.Forms.TextBox
+    Friend WithEvents Label44 As System.Windows.Forms.Label
+    Friend WithEvents SetDirsInLevel As System.Windows.Forms.TextBox
+    Friend WithEvents Label45 As System.Windows.Forms.Label
+    Friend WithEvents TestInstInSet As System.Windows.Forms.TextBox
 
 End Class

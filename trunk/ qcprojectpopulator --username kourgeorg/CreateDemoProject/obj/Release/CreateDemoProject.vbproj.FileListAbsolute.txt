@@ -11,3 +11,16 @@ C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDe
 C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Release\CreateDemoProject.exe
 C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Release\CreateDemoProject.xml
 C:\Documents and Settings\kour\My Documents\Visual Studio 2008\Projects\CreateDemoProject\CreateDemoProject\obj\Release\CreateDemoProject.pdb
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\Interop.TDAPIOLELib.dll
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.vbproj.ResolveComReference.cache
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.exe
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.xml
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.pdb
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\bin\Release\CreateDemoProject.exe
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\bin\Release\CreateDemoProject.pdb
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\bin\Release\CreateDemoProject.xml
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\bin\Release\Interop.TDAPIOLELib.dll
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.Form1.resources
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.Resources.resources
+C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.vbproj.GenerateResource.Cache
