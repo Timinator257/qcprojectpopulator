@@ -46,14 +46,27 @@ Public Class Form1
             ProgressBar.Increment(10)
             Refresh()
 
-
+            'Handle tracebality between requirements
+            If ReqCheckBox.Checked And LinkCheckBox.Checked Then
+                Handle_req_tracebility()
+            End If
 
             'Handle Tests
             If TestCheckBox.Checked = True Then
                 Handle_Tests()
+                Handle_Steps_In_Test()
             End If
 
             Result.Text = "Handle Tests Completed Successfully"
+            ProgressBar.Increment(10)
+            Refresh()
+
+            'Handle Test Lab
+            If TestLAbCheckBox.Checked Then
+                Handle_Test_Sets()
+            End If
+
+            Result.Text = "Handle Test Sets Completed Successfully"
             ProgressBar.Increment(10)
             Refresh()
 
@@ -187,7 +200,27 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Handle_req_tracebility()
+        Dim reqF As TDAPIOLELib.ReqFactory
+        reqF = tdc.ReqFactory
+        Dim reqList = reqF.NewList("")
+        For i = 1 To Val(TracebilityTextBox.Text)
 
+            Dim rand = GetRandomInt(1, reqList.Count)
+            Dim req As TDAPIOLELib.Req
+            Dim traceF As TDAPIOLELib.ReqTraceFactory
+            req = reqList(rand)
+            traceF = req.ReqTraceFactory(1) '1 = trace to
+            Dim randto = GetRandomInt(1, reqList.Count)
+            Try
+                traceF.AddItem(reqList(randto))
+                req.Post()
+            Catch ex As Exception
+                i -= 1
+            End Try
+
+        Next
+    End Sub
 
 
     Private Sub Handle_Defects()
@@ -349,6 +382,7 @@ Public Class Form1
         treeMng = tdc.TreeManager
         oRoot = treeMng.TreeRoot("Subject")
 
+
         Dim list1 As Queue(Of TDAPIOLELib.SubjectNode) = New Queue(Of TDAPIOLELib.SubjectNode)
         list1.Clear()
         list1.Enqueue(oRoot)
@@ -360,8 +394,8 @@ Public Class Form1
                 Dim currfold As TDAPIOLELib.SubjectNode
                 currfold = list1.Dequeue()    ' remove the folder from list1
 
-                For i = 1 To Val(DirsInLevel.Text)
-                    folder = currfold.AddNode("subfolder" & i.ToString & " of " & currfold.Name.ToString & " " & LoginTime)
+                For i = 1 To Val(TestDirsInLevel.Text)
+                    folder = currfold.AddNode("Subfolder " & i.ToString & " of " & currfold.Name.ToString & " " & LoginTime)
                     folder.Post()
                     list2.Enqueue(folder)
                     For k = 1 To Val(TestsInLevel.Text)
@@ -376,6 +410,85 @@ Public Class Form1
         Next
 
     End Sub
+    Private Sub Handle_Steps_In_Test()
+        Dim TestF As TDAPIOLELib.TestFactory
+        Dim TestList As TDAPIOLELib.List
+        TestF = tdc.TestFactory
+        TestList = TestF.NewList("")
+        For i = 1 To TestList.Count
+            Dim test As TDAPIOLELib.Test
+            test = TestList.Item(i)
+            For j = 1 To Val(StepsTextBox.Text)
+                Dim Designstep As TDAPIOLELib.DesignStep
+                Dim DesignStepF As TDAPIOLELib.DesignStepFactory
+                DesignStepF = test.DesignStepFactory
+                Designstep = DesignStepF.AddItem(DBNull.Value)
+                Designstep.StepName = "Step " & j
+                Designstep.StepDescription = "Step " & j & "of Test " & test.ID.ToString
+                Designstep.StepExpectedResult = "Expected Result of step " & j
+                Designstep.Post()
+            Next
+        Next
+    End Sub
+
+    Private Sub Handle_Test_Sets()
+
+
+
+        Dim treeMng As TDAPIOLELib.TestSetTreeManager
+        Dim oRoot, folder As TDAPIOLELib.TestSetFolder
+
+        treeMng = tdc.TestSetTreeManager
+        oRoot = treeMng.Root
+
+        Dim list1 As Queue(Of TDAPIOLELib.TestSetFolder) = New Queue(Of TDAPIOLELib.TestSetFolder)
+        list1.Clear()
+        list1.Enqueue(oRoot)
+        For j = 1 To Val(SetDirsLevels.Text)  'for each level do
+            Dim list2 As Queue(Of TDAPIOLELib.TestSetFolder) = New Queue(Of TDAPIOLELib.TestSetFolder)
+            list2.Clear()
+            For d = 1 To list1.Count          ' for each folder in list1
+
+                Dim currfold As TDAPIOLELib.TestSetFolder
+                currfold = list1.Dequeue()    ' remove the folder from list1
+
+                For i = 1 To Val(SetDirsInLevel.Text)
+                    folder = currfold.AddNode("Subfolder " & i.ToString & " of " & currfold.Name.ToString & " " & LoginTime)
+                    folder.Post()
+                    list2.Enqueue(folder)
+                    If folder.Path <> oRoot.Path Then
+
+
+                        For k = 1 To Val(SetsinDir.Text)
+                            Dim Tset As TDAPIOLELib.TestSet
+                            Dim setF As TDAPIOLELib.TestSetFactory
+                            setF = folder.TestSetFactory
+                            Tset = setF.AddItem(System.DBNull.Value)
+                            Tset.Name = "Test Set " & k.ToString
+                            Tset.Post()
+                            If TestCheckBox.Checked Then
+                                Dim list As TDAPIOLELib.List
+                                Dim TestF As TDAPIOLELib.TestFactory
+                                TestF = tdc.TestFactory
+                                list = TestF.NewList("")
+                                For N = 1 To Val(TestInstInSet.Text)
+                                    Dim Rand = GetRandomInt(1, list.Count)
+                                    Dim test As TDAPIOLELib.Test
+                                    test = list.Item(Rand)
+                                    Dim TestInsF As TDAPIOLELib.TSTestFactory
+                                    TestInsF = Tset.TSTestFactory
+                                    TestInsF.AddItem(test.ID)
+                                    Tset.Post()
+                                Next
+                            End If
+                        Next
+                    End If
+                Next
+            Next
+            list1 = list2
+        Next
+    End Sub
+
     Private Sub Handle_Req_test_coverage()
         Dim ReqF As TDAPIOLELib.ReqFactory
         Dim ReqList As TDAPIOLELib.List
@@ -579,6 +692,12 @@ Public Class Form1
     Private Sub RejectTextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RejectTextBox.TextChanged
         Update_New_TextBox()
     End Sub
+
+    Private Function GetRandomInt(ByVal Low, ByVal High) As Integer
+        Randomize()
+        Dim Rand = Int((High - Low + 1) * Rnd()) + Low
+        Return Rand
+    End Function
 
 
 End Class
