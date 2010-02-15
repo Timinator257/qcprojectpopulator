@@ -102,7 +102,7 @@ Partial Class Form1
         Me.TabPage4 = New System.Windows.Forms.TabPage
         Me.Label45 = New System.Windows.Forms.Label
         Me.TestInstInSet = New System.Windows.Forms.TextBox
-        Me.TestLAbCheckBox = New System.Windows.Forms.CheckBox
+        Me.TestLabCheckBox = New System.Windows.Forms.CheckBox
         Me.Label38 = New System.Windows.Forms.Label
         Me.SetsinDir = New System.Windows.Forms.TextBox
         Me.Label43 = New System.Windows.Forms.Label
@@ -886,7 +886,7 @@ Partial Class Form1
         Me.TabPage4.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage4.Controls.Add(Me.Label45)
         Me.TabPage4.Controls.Add(Me.TestInstInSet)
-        Me.TabPage4.Controls.Add(Me.TestLAbCheckBox)
+        Me.TabPage4.Controls.Add(Me.TestLabCheckBox)
         Me.TabPage4.Controls.Add(Me.Label38)
         Me.TabPage4.Controls.Add(Me.SetsinDir)
         Me.TabPage4.Controls.Add(Me.Label43)
@@ -916,15 +916,15 @@ Partial Class Form1
         Me.TestInstInSet.Size = New System.Drawing.Size(49, 20)
         Me.TestInstInSet.TabIndex = 34
         '
-        'TestLAbCheckBox
+        'TestLabCheckBox
         '
-        Me.TestLAbCheckBox.AutoSize = True
-        Me.TestLAbCheckBox.Location = New System.Drawing.Point(6, 6)
-        Me.TestLAbCheckBox.Name = "TestLAbCheckBox"
-        Me.TestLAbCheckBox.Size = New System.Drawing.Size(61, 17)
-        Me.TestLAbCheckBox.TabIndex = 33
-        Me.TestLAbCheckBox.Text = "Include"
-        Me.TestLAbCheckBox.UseVisualStyleBackColor = True
+        Me.TestLabCheckBox.AutoSize = True
+        Me.TestLabCheckBox.Location = New System.Drawing.Point(6, 6)
+        Me.TestLabCheckBox.Name = "TestLabCheckBox"
+        Me.TestLabCheckBox.Size = New System.Drawing.Size(61, 17)
+        Me.TestLabCheckBox.TabIndex = 33
+        Me.TestLabCheckBox.Text = "Include"
+        Me.TestLabCheckBox.UseVisualStyleBackColor = True
         '
         'Label38
         '
@@ -1237,7 +1237,7 @@ Partial Class Form1
     Friend WithEvents OpenTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents StepsTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents TestLAbCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents TestLabCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Label38 As System.Windows.Forms.Label
     Friend WithEvents SetsinDir As System.Windows.Forms.TextBox
     Friend WithEvents Label43 As System.Windows.Forms.Label

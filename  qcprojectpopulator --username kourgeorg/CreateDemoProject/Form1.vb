@@ -30,83 +30,91 @@ Public Class Form1
             If DefectsCheckBox.Checked = True Then
                 Handle_Defects()
                 Handle_Defects_Relations()
+
+                Result.Text = "Creating Defects Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
             End If
 
-            Result.Text = "Creating Defects Completed Successfully"
 
-            ProgressBar.Increment(10)
-            Refresh()
 
             'Handle Requirements
             If ReqCheckBox.Checked = True Then
                 Handle_Requirements()
-            End If
-
-            Result.Text = "Creating Requirements Completed Successfully"
-            ProgressBar.Increment(10)
-            Refresh()
-
-            'Handle tracebality between requirements
-            If ReqCheckBox.Checked And LinkCheckBox.Checked Then
                 Handle_req_tracebility()
+
+                Result.Text = "Creating Requirements Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
             End If
+
+
+
 
             'Handle Tests
             If TestCheckBox.Checked = True Then
                 Handle_Tests()
                 Handle_Steps_In_Test()
-            End If
 
-            Result.Text = "Handle Tests Completed Successfully"
-            ProgressBar.Increment(10)
-            Refresh()
+                Result.Text = "Handle Tests Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
+            End If
 
             'Handle Test Lab
-            If TestLAbCheckBox.Checked Then
+            If TestLabCheckBox.Checked Then
                 Handle_Test_Sets()
+
+                Result.Text = "Handle Test Sets Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
             End If
 
-            Result.Text = "Handle Test Sets Completed Successfully"
-            ProgressBar.Increment(10)
-            Refresh()
+
 
             'Handles req links to defects
             If LinkCheckBox.Checked = True And ReqCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
                 Handle_Requirements_defects_linkage()
+
+                Result.Text = "Handle Requirements-defects linkage Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
             End If
 
-            ProgressBar.Increment(10)
-            Refresh()
+
 
             'Handle tests links to defects
             If LinkCheckBox.Checked = True And TestCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
                 Handle_Tests_defects_linkage()
+
+                Result.Text = "Handle Tests-defects linkage Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
             End If
 
-            ProgressBar.Increment(10)
-            Refresh()
 
-            'Handle Req coverage
+
+            'Handle Req-test coverage
             If ReqCheckBox.Checked And TestCheckBox.Checked Then
                 Handle_Req_test_coverage()
+
+                Result.Text = "Handle Tests-Requirements linkage Completed Successfully"
+                ProgressBar.Increment(10)
+                Refresh()
             End If
 
-            Result.Text = "Handle Links and Coverages Completed Successfully"
-            ProgressBar.Increment(10)
-            Refresh()
-
-            ProgressBar.Value = 100
             Result.Text = "Completed Successfully"
-            Refresh()
+
 
         Catch exp As Exception
             Result.Text = exp.Message
-            ProgressBar.Value = 100
-            Result.ForeColor = Color.Maroon
-            Refresh()
 
         Finally
+            ProgressBar.Value = 100
+            Refresh()
+
         End Try
+
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -237,8 +245,10 @@ Public Class Form1
 
         'add defects and determine severity and priority
         For i = 1 To Val(DefectsNum.Text)
-            mybug = bfact.AddItem("Defect" & i)
+            mybug = bfact.AddItem(DBNull.Value)
             mybug.Summary = "Defect" & i & " " & LoginTime
+            Dim mydate = Now.Date.ToString.Substring(0, 10)
+            mybug.Field("BG_DETECTION_DATE") = mydate
             mybug.Status = "New"
             If i <= Critical Then
                 mybug.Priority = "5-Urgent"
