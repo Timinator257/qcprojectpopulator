@@ -41,6 +41,8 @@ Partial Class Form1
         Me.TabPage1 = New System.Windows.Forms.TabPage
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage6 = New System.Windows.Forms.TabPage
+        Me.Label46 = New System.Windows.Forms.Label
+        Me.DefectAttachment = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.DefectsNum = New System.Windows.Forms.TextBox
         Me.DefectsCheckBox = New System.Windows.Forms.CheckBox
@@ -80,6 +82,8 @@ Partial Class Form1
         Me.FixTextBox = New System.Windows.Forms.TextBox
         Me.OpenTextBox = New System.Windows.Forms.TextBox
         Me.TabPage2 = New System.Windows.Forms.TabPage
+        Me.Label49 = New System.Windows.Forms.Label
+        Me.ReqAttachment = New System.Windows.Forms.TextBox
         Me.Label31 = New System.Windows.Forms.Label
         Me.TracebilityTextBox = New System.Windows.Forms.TextBox
         Me.Label30 = New System.Windows.Forms.Label
@@ -90,6 +94,8 @@ Partial Class Form1
         Me.ReqCheckBox = New System.Windows.Forms.CheckBox
         Me.ReqsNum = New System.Windows.Forms.TextBox
         Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.Label51 = New System.Windows.Forms.Label
+        Me.TestPlanAttachement = New System.Windows.Forms.TextBox
         Me.Label21 = New System.Windows.Forms.Label
         Me.StepsTextBox = New System.Windows.Forms.TextBox
         Me.Label14 = New System.Windows.Forms.Label
@@ -100,6 +106,8 @@ Partial Class Form1
         Me.TestDirsInLevel = New System.Windows.Forms.TextBox
         Me.TestCheckBox = New System.Windows.Forms.CheckBox
         Me.TabPage4 = New System.Windows.Forms.TabPage
+        Me.Label53 = New System.Windows.Forms.Label
+        Me.TestLabAttachment = New System.Windows.Forms.TextBox
         Me.Label45 = New System.Windows.Forms.Label
         Me.TestInstInSet = New System.Windows.Forms.TextBox
         Me.TestLabCheckBox = New System.Windows.Forms.CheckBox
@@ -117,12 +125,17 @@ Partial Class Form1
         Me.ReqDefectlnk = New System.Windows.Forms.TextBox
         Me.Label16 = New System.Windows.Forms.Label
         Me.TestDefectLnk = New System.Windows.Forms.TextBox
+        Me.CommonTabPage = New System.Windows.Forms.TabPage
+        Me.AttachmentCheckBox = New System.Windows.Forms.CheckBox
+        Me.BrowseButton = New System.Windows.Forms.Button
+        Me.AttachementTextBox = New System.Windows.Forms.TextBox
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
         Me.Panel3 = New System.Windows.Forms.Panel
         Me.ProgressBar = New System.Windows.Forms.ProgressBar
         Me.Label24 = New System.Windows.Forms.Label
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.OpenFD = New System.Windows.Forms.OpenFileDialog
         Me.Panel1.SuspendLayout()
         Me.TabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -134,6 +147,7 @@ Partial Class Form1
         Me.TabPage3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        Me.CommonTabPage.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -253,7 +267,7 @@ Partial Class Form1
         'Result
         '
         Me.Result.Enabled = False
-        Me.Result.Location = New System.Drawing.Point(54, 13)
+        Me.Result.Location = New System.Drawing.Point(65, 13)
         Me.Result.Multiline = True
         Me.Result.Name = "Result"
         Me.Result.Size = New System.Drawing.Size(304, 61)
@@ -275,6 +289,7 @@ Partial Class Form1
         Me.TabControl.Controls.Add(Me.TabPage3)
         Me.TabControl.Controls.Add(Me.TabPage4)
         Me.TabControl.Controls.Add(Me.TabPage5)
+        Me.TabControl.Controls.Add(Me.CommonTabPage)
         Me.TabControl.Location = New System.Drawing.Point(12, 215)
         Me.TabControl.Name = "TabControl"
         Me.TabControl.SelectedIndex = 0
@@ -306,6 +321,8 @@ Partial Class Form1
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.Label46)
+        Me.TabPage6.Controls.Add(Me.DefectAttachment)
         Me.TabPage6.Controls.Add(Me.Label7)
         Me.TabPage6.Controls.Add(Me.DefectsNum)
         Me.TabPage6.Controls.Add(Me.DefectsCheckBox)
@@ -315,6 +332,24 @@ Partial Class Form1
         Me.TabPage6.Size = New System.Drawing.Size(370, 111)
         Me.TabPage6.TabIndex = 0
         Me.TabPage6.Text = "General"
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(3, 54)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(86, 13)
+        Me.Label46.TabIndex = 31
+        Me.Label46.Text = "Def. with Attach."
+        '
+        'DefectAttachment
+        '
+        Me.DefectAttachment.Enabled = False
+        Me.DefectAttachment.Location = New System.Drawing.Point(93, 51)
+        Me.DefectAttachment.Name = "DefectAttachment"
+        Me.DefectAttachment.Size = New System.Drawing.Size(49, 20)
+        Me.DefectAttachment.TabIndex = 30
+        Me.DefectAttachment.Text = "0"
         '
         'Label7
         '
@@ -327,7 +362,7 @@ Partial Class Form1
         '
         'DefectsNum
         '
-        Me.DefectsNum.Location = New System.Drawing.Point(91, 24)
+        Me.DefectsNum.Location = New System.Drawing.Point(93, 27)
         Me.DefectsNum.Name = "DefectsNum"
         Me.DefectsNum.Size = New System.Drawing.Size(49, 20)
         Me.DefectsNum.TabIndex = 27
@@ -698,6 +733,8 @@ Partial Class Form1
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage2.Controls.Add(Me.Label49)
+        Me.TabPage2.Controls.Add(Me.ReqAttachment)
         Me.TabPage2.Controls.Add(Me.Label31)
         Me.TabPage2.Controls.Add(Me.TracebilityTextBox)
         Me.TabPage2.Controls.Add(Me.Label30)
@@ -713,6 +750,24 @@ Partial Class Form1
         Me.TabPage2.Size = New System.Drawing.Size(374, 138)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Requirements"
+        '
+        'Label49
+        '
+        Me.Label49.AutoSize = True
+        Me.Label49.Location = New System.Drawing.Point(175, 29)
+        Me.Label49.Name = "Label49"
+        Me.Label49.Size = New System.Drawing.Size(88, 13)
+        Me.Label49.TabIndex = 34
+        Me.Label49.Text = "Reqs with Attach"
+        '
+        'ReqAttachment
+        '
+        Me.ReqAttachment.Enabled = False
+        Me.ReqAttachment.Location = New System.Drawing.Point(265, 26)
+        Me.ReqAttachment.Name = "ReqAttachment"
+        Me.ReqAttachment.Size = New System.Drawing.Size(49, 20)
+        Me.ReqAttachment.TabIndex = 33
+        Me.ReqAttachment.Text = "0"
         '
         'Label31
         '
@@ -791,6 +846,8 @@ Partial Class Form1
         'TabPage3
         '
         Me.TabPage3.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage3.Controls.Add(Me.Label51)
+        Me.TabPage3.Controls.Add(Me.TestPlanAttachement)
         Me.TabPage3.Controls.Add(Me.Label21)
         Me.TabPage3.Controls.Add(Me.StepsTextBox)
         Me.TabPage3.Controls.Add(Me.Label14)
@@ -806,6 +863,24 @@ Partial Class Form1
         Me.TabPage3.Size = New System.Drawing.Size(374, 138)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TestPlan"
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Location = New System.Drawing.Point(172, 73)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(89, 13)
+        Me.Label51.TabIndex = 34
+        Me.Label51.Text = "Tests with Attach"
+        '
+        'TestPlanAttachement
+        '
+        Me.TestPlanAttachement.Enabled = False
+        Me.TestPlanAttachement.Location = New System.Drawing.Point(262, 70)
+        Me.TestPlanAttachement.Name = "TestPlanAttachement"
+        Me.TestPlanAttachement.Size = New System.Drawing.Size(49, 20)
+        Me.TestPlanAttachement.TabIndex = 33
+        Me.TestPlanAttachement.Text = "0"
         '
         'Label21
         '
@@ -884,6 +959,8 @@ Partial Class Form1
         'TabPage4
         '
         Me.TabPage4.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage4.Controls.Add(Me.Label53)
+        Me.TabPage4.Controls.Add(Me.TestLabAttachment)
         Me.TabPage4.Controls.Add(Me.Label45)
         Me.TabPage4.Controls.Add(Me.TestInstInSet)
         Me.TabPage4.Controls.Add(Me.TestLabCheckBox)
@@ -899,6 +976,24 @@ Partial Class Form1
         Me.TabPage4.Size = New System.Drawing.Size(374, 138)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TestLab"
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Location = New System.Drawing.Point(186, 74)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(84, 13)
+        Me.Label53.TabIndex = 37
+        Me.Label53.Text = "Sets with Attach"
+        '
+        'TestLabAttachment
+        '
+        Me.TestLabAttachment.Enabled = False
+        Me.TestLabAttachment.Location = New System.Drawing.Point(276, 71)
+        Me.TestLabAttachment.Name = "TestLabAttachment"
+        Me.TestLabAttachment.Size = New System.Drawing.Size(49, 20)
+        Me.TestLabAttachment.TabIndex = 36
+        Me.TestLabAttachment.Text = "0"
         '
         'Label45
         '
@@ -1049,6 +1144,46 @@ Partial Class Form1
         Me.TestDefectLnk.Size = New System.Drawing.Size(49, 20)
         Me.TestDefectLnk.TabIndex = 29
         '
+        'CommonTabPage
+        '
+        Me.CommonTabPage.BackColor = System.Drawing.SystemColors.Control
+        Me.CommonTabPage.Controls.Add(Me.AttachmentCheckBox)
+        Me.CommonTabPage.Controls.Add(Me.BrowseButton)
+        Me.CommonTabPage.Controls.Add(Me.AttachementTextBox)
+        Me.CommonTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.CommonTabPage.Name = "CommonTabPage"
+        Me.CommonTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.CommonTabPage.Size = New System.Drawing.Size(374, 138)
+        Me.CommonTabPage.TabIndex = 5
+        Me.CommonTabPage.Text = "Common"
+        '
+        'AttachmentCheckBox
+        '
+        Me.AttachmentCheckBox.AutoSize = True
+        Me.AttachmentCheckBox.Location = New System.Drawing.Point(6, 9)
+        Me.AttachmentCheckBox.Name = "AttachmentCheckBox"
+        Me.AttachmentCheckBox.Size = New System.Drawing.Size(118, 17)
+        Me.AttachmentCheckBox.TabIndex = 36
+        Me.AttachmentCheckBox.Text = "Include Attachment"
+        Me.AttachmentCheckBox.UseVisualStyleBackColor = True
+        '
+        'BrowseButton
+        '
+        Me.BrowseButton.Location = New System.Drawing.Point(289, 30)
+        Me.BrowseButton.Name = "BrowseButton"
+        Me.BrowseButton.Size = New System.Drawing.Size(75, 20)
+        Me.BrowseButton.TabIndex = 35
+        Me.BrowseButton.Text = "Browse"
+        Me.BrowseButton.UseVisualStyleBackColor = True
+        '
+        'AttachementTextBox
+        '
+        Me.AttachementTextBox.Enabled = False
+        Me.AttachementTextBox.Location = New System.Drawing.Point(7, 30)
+        Me.AttachementTextBox.Name = "AttachementTextBox"
+        Me.AttachementTextBox.Size = New System.Drawing.Size(276, 20)
+        Me.AttachementTextBox.TabIndex = 34
+        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -1063,11 +1198,11 @@ Partial Class Form1
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(11, 13)
+        Me.Label9.Location = New System.Drawing.Point(4, 13)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(37, 13)
+        Me.Label9.Size = New System.Drawing.Size(58, 13)
         Me.Label9.TabIndex = 13
-        Me.Label9.Text = "Result"
+        Me.Label9.Text = "Status Log"
         '
         'Panel3
         '
@@ -1104,6 +1239,10 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 21
         Me.PictureBox1.TabStop = False
         '
+        'OpenFD
+        '
+        Me.OpenFD.FileName = "OpenFileDialog1"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1139,6 +1278,8 @@ Partial Class Form1
         Me.TabPage4.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        Me.CommonTabPage.ResumeLayout(False)
+        Me.CommonTabPage.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1246,5 +1387,18 @@ Partial Class Form1
     Friend WithEvents SetDirsInLevel As System.Windows.Forms.TextBox
     Friend WithEvents Label45 As System.Windows.Forms.Label
     Friend WithEvents TestInstInSet As System.Windows.Forms.TextBox
+    Friend WithEvents CommonTabPage As System.Windows.Forms.TabPage
+    Friend WithEvents BrowseButton As System.Windows.Forms.Button
+    Friend WithEvents AttachementTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents OpenFD As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents AttachmentCheckBox As System.Windows.Forms.CheckBox
+    Friend WithEvents Label46 As System.Windows.Forms.Label
+    Friend WithEvents DefectAttachment As System.Windows.Forms.TextBox
+    Friend WithEvents Label49 As System.Windows.Forms.Label
+    Friend WithEvents ReqAttachment As System.Windows.Forms.TextBox
+    Friend WithEvents Label51 As System.Windows.Forms.Label
+    Friend WithEvents TestPlanAttachement As System.Windows.Forms.TextBox
+    Friend WithEvents Label53 As System.Windows.Forms.Label
+    Friend WithEvents TestLabAttachment As System.Windows.Forms.TextBox
 
 End Class
