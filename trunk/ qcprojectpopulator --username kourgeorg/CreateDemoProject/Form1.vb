@@ -12,6 +12,12 @@ Public Class Form1
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Populate.Click
 
+
+        'should add validators of the input
+        '1. all values are > 1
+        'attachement file exist
+
+
         SetLoginTime()
         ProgressBar.Value = 0
         Try
@@ -131,13 +137,14 @@ Public Class Form1
     Private Sub LoginButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoginButton.Click
 
         Try
-            Result.Text = ""
             ProgressBar.Value = 0
             Disconnect()
+            Result.Text = "Connecting to QC Server. Please Wait..."
+            Refresh()
             Login()
             Populate_Login_lists()
             Populate_Domain_ComboBox()
-
+            Result.Text = ""
 
         Catch ex As Exception
             Disconnect()
@@ -197,6 +204,8 @@ Public Class Form1
 
     Private Sub Disconnect()
 
+        Result.Text = "Disconnecting. Please Wait..."
+        Refresh()
         If tdc.Connected Then
             If tdc.LoggedIn = True Then
                 tdc.Logout()
@@ -237,11 +246,11 @@ Public Class Form1
         bfact = tdc.BugFactory
         Dim mybug As TDAPIOLELib.Bug
         Dim high, meduim, low, veryHigh, Critical As Integer
-        Critical = Val((DefectsNum.Text) * (CriticalTextBox.Text)) / 100
-        veryHigh = Val((DefectsNum.Text) * (VeryHighTextBox.Text)) / 100 + Critical
-        high = Val((DefectsNum.Text) * (HighTextBox.Text)) / 100 + veryHigh
-        meduim = Val((DefectsNum.Text) * (MeduimTextBox.Text)) / 100 + high
-        low = Val((DefectsNum.Text) * (LowTextBox.Text)) / 100 + meduim
+        Critical = (Val(DefectsNum.Text) * Val(CriticalTextBox.Text)) / 100
+        veryHigh = (Val(DefectsNum.Text) * Val(VeryHighTextBox.Text)) / 100 + Critical
+        high = (Val(DefectsNum.Text) * Val(HighTextBox.Text)) / 100 + veryHigh
+        meduim = (Val(DefectsNum.Text) * Val(MeduimTextBox.Text)) / 100 + high
+        low = (Val(DefectsNum.Text) * Val(LowTextBox.Text)) / 100 + meduim
 
         'add defects and determine severity and priority
         For i = 1 To Val(DefectsNum.Text)
@@ -268,15 +277,27 @@ Public Class Form1
             End If
             mybug.DetectedBy = Username.Text
             mybug.Post()
+            'Handle attachement in defect
+            If AttachmentCheckBox.Enabled Then
+                If i <= Val(DefectAttachment.Text) Then
+                    Dim attachF As TDAPIOLELib.AttachmentFactory = mybug.Attachments
+                    Dim attachment As TDAPIOLELib.Attachment = attachF.AddItem(DBNull.Value)
+                    attachment.FileName = AttachementTextBox.Text
+                    attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
+                    attachment.Post()
+                End If
+            End If
+
+
         Next i
 
         'Handle statuses
         Dim open, fixed, closed, rejected, reopen As Integer
-        open = Val((DefectsNum.Text) * (OpenTextBox.Text)) / 100
-        fixed = Val((DefectsNum.Text) * (FixTextBox.Text)) / 100 + open
-        closed = Val((DefectsNum.Text) * (CloseTextBox.Text)) / 100 + fixed
-        rejected = Val((DefectsNum.Text) * (RejectTextBox.Text)) / 100 + closed
-        reopen = Val((DefectsNum.Text) * (ReopenTextBox.Text)) / 100 + rejected
+        open = (Val(DefectsNum.Text) * Val(OpenTextBox.Text)) / 100
+        fixed = (Val(DefectsNum.Text) * Val(FixTextBox.Text)) / 100 + open
+        closed = (Val(DefectsNum.Text) * Val(CloseTextBox.Text)) / 100 + fixed
+        rejected = (Val(DefectsNum.Text) * Val(RejectTextBox.Text)) / 100 + closed
+        reopen = (Val(DefectsNum.Text) * Val(ReopenTextBox.Text)) / 100 + rejected
 
         Dim BugList As TDAPIOLELib.List
         BugList = bfact.NewList("")
@@ -352,6 +373,7 @@ Public Class Form1
         reqF = tdc.ReqFactory
         Dim newR As TDAPIOLELib.Req
 
+        Dim Reqcounter = 0
         Dim list1 As Queue(Of Long) = New Queue(Of Long)
         list1.Clear()
 
@@ -365,6 +387,8 @@ Public Class Form1
                 Dim FatherReqID As Long
                 FatherReqID = list1.Dequeue
                 For i = 1 To Val(ReqsNum.Text) 'create reqnum elements
+
+                    Reqcounter += 1
                     newR = reqF.AddItem(System.DBNull.Value)
 
                     With newR
@@ -372,7 +396,17 @@ Public Class Form1
                         .Name = "Sub Req " & i & " of req " & FatherReqID.ToString & " at " & LoginTime
                         .Comment = "Sub Req " & i & " of req " & FatherReqID.ToString & " at " & LoginTime & " Comment"
                         .Post()
-                        list2.Enqueue(newR.ID) 'Insert the ceated requirement in the queue
+                        list2.Enqueue(newR.ID) 'Insert the created requirement in the queue
+
+                        If AttachmentCheckBox.Checked Then
+                            If Reqcounter <= Val(ReqAttachment.Text) Then
+                                Dim AttachF As TDAPIOLELib.AttachmentFactory = newR.Attachments
+                                Dim attachment As TDAPIOLELib.Attachment = AttachF.AddItem(DBNull.Value)
+                                attachment.FileName = AttachementTextBox.Text
+                                attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
+                                attachment.Post()
+                            End If
+                        End If
                     End With
                 Next
             Next
@@ -385,7 +419,7 @@ Public Class Form1
 
         Dim test1 As TDAPIOLELib.Test
         Dim testF As TDAPIOLELib.TestFactory
-
+        Dim TestCounter = 0
 
         Dim treeMng As TDAPIOLELib.TreeManager
         Dim oRoot, folder As TDAPIOLELib.SubjectNode
@@ -413,6 +447,17 @@ Public Class Form1
                         test1 = testF.AddItem(System.DBNull.Value)
                         test1.Name = "Test " & k.ToString
                         test1.Post()
+                        'handle attachments
+                        TestCounter += 1
+                        If AttachmentCheckBox.Checked Then
+                            If TestCounter <= Val(TestPlanAttachement.Text) Then
+                                Dim attachF As TDAPIOLELib.AttachmentFactory = test1.Attachments
+                                Dim attachment As TDAPIOLELib.Attachment = attachF.AddItem(DBNull.Value)
+                                attachment.FileName = AttachementTextBox.Text
+                                attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
+                                attachment.Post()
+                            End If
+                        End If
                     Next
                 Next
             Next
@@ -443,13 +488,13 @@ Public Class Form1
 
     Private Sub Handle_Test_Sets()
 
-
-
         Dim treeMng As TDAPIOLELib.TestSetTreeManager
         Dim oRoot, folder As TDAPIOLELib.TestSetFolder
 
         treeMng = tdc.TestSetTreeManager
         oRoot = treeMng.Root
+
+        Dim TestSetCounter = 0
 
         Dim list1 As Queue(Of TDAPIOLELib.TestSetFolder) = New Queue(Of TDAPIOLELib.TestSetFolder)
         list1.Clear()
@@ -476,6 +521,17 @@ Public Class Form1
                             Tset = setF.AddItem(System.DBNull.Value)
                             Tset.Name = "Test Set " & k.ToString
                             Tset.Post()
+                            'Handle attachement in test sets
+                            TestSetCounter += 1
+                            If AttachmentCheckBox.Checked Then
+                                If TestSetCounter <= Val(TestLabAttachment.Text) Then
+                                    Dim attachF As TDAPIOLELib.AttachmentFactory = Tset.Attachments
+                                    Dim attachment As TDAPIOLELib.Attachment = attachF.AddItem(DBNull.Value)
+                                    attachment.FileName = AttachementTextBox.Text
+                                    attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
+                                    attachment.Post()
+                                End If
+                            End If
                             If TestCheckBox.Checked Then
                                 Dim list As TDAPIOLELib.List
                                 Dim TestF As TDAPIOLELib.TestFactory
@@ -709,7 +765,45 @@ Public Class Form1
         Return Rand
     End Function
 
+    Private Sub CommonCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AttachmentCheckBox.CheckedChanged
+        If AttachmentCheckBox.Checked Then
+            DefectAttachment.Enabled = True
+            ReqAttachment.Enabled = True
+            TestPlanAttachement.Enabled = True
+            TestLabAttachment.Enabled = True
+            AttachementTextBox.Enabled = True
+        Else
+            DefectAttachment.Enabled = False
+            ReqAttachment.Enabled = False
+            TestPlanAttachement.Enabled = False
+            TestLabAttachment.Enabled = False
+            AttachementTextBox.Enabled = False
+        End If
 
+
+    End Sub
+
+    Private Sub BrowseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrowseButton.Click
+        OpenFD.Title = "Browse attachment file"
+        OpenFD.InitialDirectory = Environment.SpecialFolder.Desktop.ToString()
+        'openFD.FileName = "dbid.xml";
+        'openFD.Filter = "XML Files|*.xml|All Files|*.*";
+        Dim Chosen_File As String = ""
+        If (OpenFD.ShowDialog <> DialogResult.Cancel) Then
+            Chosen_File = OpenFD.FileName
+        End If
+        AttachementTextBox.Text = Chosen_File
+
+    End Sub
+
+
+    Private Sub CommonTabPage_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CommonTabPage.Leave
+        If AttachmentCheckBox.Checked And Not File.Exists(AttachementTextBox.Text) Then
+            MessageBox.Show("File does not exist, please make sure the file exist in the local file system")
+            AttachmentCheckBox.Checked = False
+            AttachementTextBox.Text = ""
+        End If
+    End Sub
 End Class
 
 
