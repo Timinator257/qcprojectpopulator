@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CreateDemoProject", "CreateDemoProject\CreateDemoProject.vbproj", "{EBF66D9B-0794-4E56-BB12-0027281A5193}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ProjectDataPopulator", "CreateDemoProject\ProjectDataPopulator.vbproj", "{EBF66D9B-0794-4E56-BB12-0027281A5193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

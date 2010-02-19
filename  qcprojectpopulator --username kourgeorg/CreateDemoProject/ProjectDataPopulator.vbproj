@@ -7,9 +7,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{EBF66D9B-0794-4E56-BB12-0027281A5193}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>CreateDemoProject.My.MyApplication</StartupObject>
-    <RootNamespace>CreateDemoProject</RootNamespace>
-    <AssemblyName>CreateDemoProject</AssemblyName>
+    <StartupObject>ProjectDataPopulator.My.MyApplication</StartupObject>
+    <RootNamespace>ProjectDataPopulator</RootNamespace>
+    <AssemblyName>ProjectDataPopulator</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -17,7 +17,7 @@
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
-    <ApplicationIcon>database_save.ico</ApplicationIcon>
+    <ApplicationIcon>1266586599__prozess.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +25,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>CreateDemoProject.xml</DocumentationFile>
+    <DocumentationFile>ProjectDataPopulator.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -34,7 +34,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CreateDemoProject.xml</DocumentationFile>
+    <DocumentationFile>ProjectDataPopulator.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
@@ -132,6 +132,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1266586599__prozess.ico" />
     <Content Include="database_save.ico" />
     <Content Include="database_table.ico" />
     <Content Include="RA2HP.ico" />
