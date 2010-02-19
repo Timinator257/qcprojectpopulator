@@ -7,6 +7,9 @@ Public Class Form1
     Dim ProjectsLists As List(Of List(Of String))
     Dim LoginTime As String
 
+    Dim LogFileName As String
+    Dim LogFile As System.IO.StreamWriter
+    Dim log As String
 
 
     Private Sub SetLoginTime()
@@ -20,28 +23,35 @@ Public Class Form1
         '1. all values are > 1
         'attachement file exist
 
-
+        If LoggerCheckBox.Checked Then
+            InitializeLogFile()
+        End If
 
         SetLoginTime()
         ProgressBar.Value = 0
-        Try
+        Try 'connecting to the selected project
             Result.Text = "Connecting to " & ProjectsComboBox.SelectedText & " Project"
+
             ConnectDuration = Now.TimeOfDay
             Connect()
             ProgressBar.Increment(10)
             ConnectDuration = Now.TimeOfDay - ConnectDuration
             Result.Text = "Login Completed Successfully."
             Result.Text += vbCrLf & "Duration: " & ConnectDuration.ToString.Substring(0, 12)
+
+            AddEventToLog(2, "Duration of log in: " & ConnectDuration.ToString.Substring(0, 12))
+
+
             Refresh()
         Catch ex As Exception
             Result.Text = "Can't connect to Server"
+            AddEventToLog(1, "Can't connect to Server")
             Return
         End Try
 
-        Try
+        Try 'start populating
             PopulateDuration = Now.TimeOfDay
-
-
+            AddEventToLog(1, "Start populating")
             'Handle Defects
             If DefectsCheckBox.Checked = True Then
                 Handle_Defects()
@@ -130,8 +140,9 @@ Public Class Form1
         Finally
             ProgressBar.Value = 100
             Refresh()
-
-
+            If LoggerCheckBox = CheckBox Then
+                LogFile.Close()
+            End If
         End Try
 
     End Sub
@@ -262,6 +273,7 @@ Public Class Form1
         Dim bfact As TDAPIOLELib.BugFactory
         bfact = tdc.BugFactory
         Dim mybug As TDAPIOLELib.Bug
+        Dim NewBugList As TDAPIOLELib.List = New TDAPIOLELib.List
         Dim high, meduim, low, veryHigh, Critical As Integer
         Critical = (Val(DefectsNum.Text) * Val(CriticalTextBox.Text)) / 100
         veryHigh = (Val(DefectsNum.Text) * Val(VeryHighTextBox.Text)) / 100 + Critical
@@ -269,6 +281,7 @@ Public Class Form1
         meduim = (Val(DefectsNum.Text) * Val(MeduimTextBox.Text)) / 100 + high
         low = (Val(DefectsNum.Text) * Val(LowTextBox.Text)) / 100 + meduim
 
+        AddEventToLog(1, "start Creating Defects")
         'add defects and determine severity and priority
         For i = 1 To Val(DefectsNum.Text)
             mybug = bfact.AddItem(DBNull.Value)
@@ -294,6 +307,8 @@ Public Class Form1
             End If
             mybug.DetectedBy = Username.Text
             mybug.Post()
+            NewBugList.Add(mybug)
+            AddEventToLog(1, "Defect " & mybug.ID & " was added")
             'Handle attachement in defect
             If AttachmentCheckBox.Enabled Then
                 If i <= Val(DefectAttachment.Text) Then
@@ -302,6 +317,7 @@ Public Class Form1
                     attachment.FileName = AttachementTextBox.Text
                     attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
                     attachment.Post()
+                    AddEventToLog(1, "Attachement was added to defect " & mybug.ID)
                 End If
             End If
 
@@ -317,8 +333,7 @@ Public Class Form1
         reopen = (Val(DefectsNum.Text) * Val(ReopenTextBox.Text)) / 100 + rejected
 
         Dim BugList As TDAPIOLELib.List
-        BugList = bfact.NewList("")
-
+        BugList = NewBugList
         For i = 1 To BugList.Count
             mybug = BugList.Item(i)
             If i <= open Then
@@ -789,22 +804,22 @@ Public Class Form1
             TestPlanAttachement.Enabled = True
             TestLabAttachment.Enabled = True
             AttachementTextBox.Enabled = True
+            AttachmentBrowse.Enabled = True
         Else
             DefectAttachment.Enabled = False
             ReqAttachment.Enabled = False
             TestPlanAttachement.Enabled = False
             TestLabAttachment.Enabled = False
             AttachementTextBox.Enabled = False
+            AttachmentBrowse.Enabled = False
         End If
 
 
     End Sub
 
-    Private Sub BrowseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrowseButton.Click
-        OpenFD.Title = "Browse attachment file"
+    Private Sub BrowseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AttachmentBrowse.Click
+        OpenFD.Title = "Load Attachment File"
         OpenFD.InitialDirectory = Environment.SpecialFolder.Desktop.ToString()
-        'openFD.FileName = "dbid.xml";
-        'openFD.Filter = "XML Files|*.xml|All Files|*.*";
         Dim Chosen_File As String = ""
         If (OpenFD.ShowDialog <> DialogResult.Cancel) Then
             Chosen_File = OpenFD.FileName
@@ -822,6 +837,66 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub InitializeLogFile()
+        'Create the log file in the filesystem
+        LogFile = New System.IO.StreamWriter(LogFileName, True)
+        LogFile.WriteLine()
+        LogFile.WriteLine("<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">")
+        LogFile.WriteLine("<html>")
+        LogFile.WriteLine("<head>")
+        LogFile.WriteLine("<title>QC Project Data Populator Logger</title>")
+        LogFile.WriteLine("<style type=""text/css"">")
+        LogFile.WriteLine("</style>")
+        LogFile.WriteLine("</head>")
+        LogFile.WriteLine("<body bgcolor=""#FFFFFF"" topmargin=""6"" leftmargin=""6"">")
+        LogFile.WriteLine("<hr size=""1"" noshade>")
+        LogFile.WriteLine("Log session start time" & Now.Date & " " & Now.TimeOfDay.ToString.Substring(0, 9) & "<br><br>")
+        LogFile.WriteLine("<table cellspacing=""0"" cellpadding=""4"" border=""1"" bordercolor=""#224466"" width=""100%"">")
+        LogFile.WriteLine("<tr> <th>Time</th><th>Category</th><th>Message</th></tr>")
+
+    End Sub
+
+    Private Sub SaveLogButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveLogBrowse.Click
+        If LoggerCheckBox.Checked Then
+            SaveLogFD.InitialDirectory = Environment.SpecialFolder.Desktop.ToString()
+            SaveLogFD.Title = "Save Log As"
+            SaveLogFD.FileName = "PopulatorLog" & LoginTime & ".html"
+            SaveLogFD.Filter = "HTML Files|*.html|All Files|*.*"
+            If (SaveLogFD.ShowDialog() <> DialogResult.Cancel) Then
+                LogFileName = SaveLogFD.FileName
+                LogTextBox.Text = SaveLogFD.FileName
+            End If
+        End If
+
+    End Sub
+
+    Private Sub LoggerCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoggerCheckBox.CheckedChanged
+        If LoggerCheckBox.Checked Then
+            LogTextBox.Enabled = True
+            SaveLogBrowse.Enabled = True
+        Else
+            LogTextBox.Enabled = False
+            SaveLogBrowse.Enabled = False
+        End If
+    End Sub
+
+    Private Sub AddEventToLog(ByVal Category As Integer, ByVal Message As String)
+        If LoggerCheckBox.Checked Then
+            LogFile.WriteLine("<tr>")
+            LogFile.WriteLine("<td>" & Now.Date & "  " & Now.TimeOfDay.ToString.Substring(0, 12) & "</td>")
+            If Category = 1 Then
+                LogFile.WriteLine("<td title=""Category"">" & "Info" & "</td>")
+            Else
+                LogFile.WriteLine("<td title=""Category"">" & "Performance" & "</td>")
+            End If
+            LogFile.WriteLine("<td title=""Message"">" & Message & "</td>")
+            LogFile.WriteLine("</tr>")
+        End If
+    End Sub
+
+    Private Sub Result_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Result.TextChanged
+        AddEventToLog(1, Result.Text)
+    End Sub
 End Class
 
 
