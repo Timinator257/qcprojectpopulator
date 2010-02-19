@@ -7,12 +7,15 @@ Public Class Form1
     Dim ProjectsLists As List(Of List(Of String))
     Dim LoginTime As String
 
+
+
     Private Sub SetLoginTime()
         LoginTime = Now.Date.ToString.Substring(0, 9).Replace("/", "-") & " " & Now.TimeOfDay.ToString.Replace(":", "-")
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Populate.Click
 
-
+        Dim PopulateTime As TimeSpan
+        Dim ConnectDuration As TimeSpan
         'should add validators of the input
         '1. all values are > 1
         'attachement file exist
@@ -21,9 +24,12 @@ Public Class Form1
         SetLoginTime()
         ProgressBar.Value = 0
         Try
+            Result.Text = "Connecting to " & ProjectsComboBox.SelectedText & " Project"
+            ConnectDuration = Now.TimeOfDay
             Connect()
             ProgressBar.Increment(10)
-            Result.Text = "Login Completed Successfully"
+            ConnectDuration = Now.TimeOfDay - ConnectDuration
+            Result.Text = "Login Completed Successfully. Duration: " & ConnectDuration.ToString.Substring(0, 12)
             Refresh()
         Catch ex As Exception
             Result.Text = "Can't connect to Server"
@@ -31,6 +37,8 @@ Public Class Form1
         End Try
 
         Try
+            PopulateTime = Now.TimeOfDay
+
 
             'Handle Defects
             If DefectsCheckBox.Checked = True Then
@@ -108,8 +116,10 @@ Public Class Form1
                 ProgressBar.Increment(10)
                 Refresh()
             End If
-
-            Result.Text = "Completed Successfully"
+            PopulateTime = Now.TimeOfDay - PopulateTime
+            Result.Text = "Completed Successfully."
+            Result.Text += vbCrLf & "Establishing Connection duration: " & ConnectDuration.ToString.Substring(0, 12)
+            Result.Text += vbCrLf & "Poplulation duration: " & PopulateTime.ToString.Substring(0, 12)
 
 
         Catch exp As Exception
@@ -118,6 +128,7 @@ Public Class Form1
         Finally
             ProgressBar.Value = 100
             Refresh()
+
 
         End Try
 
@@ -139,12 +150,16 @@ Public Class Form1
         Try
             ProgressBar.Value = 0
             Disconnect()
-            Result.Text = "Connecting to QC Server. Please Wait..."
+            Dim Login_time As TimeSpan
+            Result.Text = "Logging in to QC Server. Please Wait..."
             Refresh()
+            Login_time = Now.TimeOfDay
             Login()
+            Login_time = Now.TimeOfDay - Login_time
+            Result.Text = "Logged in. Duration: " & Login_time.ToString.Substring(0, 12)
             Populate_Login_lists()
             Populate_Domain_ComboBox()
-            Result.Text = ""
+            Refresh()
 
         Catch ex As Exception
             Disconnect()
@@ -325,9 +340,9 @@ Public Class Form1
 
     Private Sub Handle_Defects_Relations()
 
-        If (Val(LinksBetweenDefects.Text) >= Val(DefectsNum.Text)) Then
-            Throw New Exception("Number of Links between defects should be greater that the defects number")
-        End If
+        'If (Val(LinksBetweenDefects.Text) >= Val(DefectsNum.Text)) Then
+        'Throw New Exception("Number of Links between defects should be greater that the defects number")
+        ' End If
 
         Dim bfact As TDAPIOLELib.BugFactory
         bfact = tdc.BugFactory
@@ -804,6 +819,7 @@ Public Class Form1
             AttachementTextBox.Text = ""
         End If
     End Sub
+
 End Class
 
 

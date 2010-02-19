@@ -24,3 +24,16 @@ C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\
 C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.Form1.resources
 C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.Resources.resources
 C:\Documents and Settings\kour\Desktop\New Folder\CreateDemoProject\obj\Release\CreateDemoProject.vbproj.GenerateResource.Cache
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\Interop.TDAPIOLELib.dll
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.vbproj.ResolveComReference.cache
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.exe
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.xml
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.pdb
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\bin\Release\CreateDemoProject.exe
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\bin\Release\CreateDemoProject.pdb
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\bin\Release\CreateDemoProject.xml
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\bin\Release\Interop.TDAPIOLELib.dll
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.Form1.resources
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.Resources.resources
+C:\Documents and Settings\kour\Desktop\Poplator\CreateDemoProject\obj\Release\CreateDemoProject.vbproj.GenerateResource.Cache
