@@ -763,7 +763,7 @@ Partial Class Form1
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.58586!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41414!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Label6, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.ReqCheckBox, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.ReqAttachment, 2, 2)
@@ -811,7 +811,7 @@ Partial Class Form1
         '
         Me.ReqAttachment.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.ReqAttachment.Enabled = False
-        Me.ReqAttachment.Location = New System.Drawing.Point(213, 56)
+        Me.ReqAttachment.Location = New System.Drawing.Point(212, 56)
         Me.ReqAttachment.Name = "ReqAttachment"
         Me.ReqAttachment.Size = New System.Drawing.Size(60, 20)
         Me.ReqAttachment.TabIndex = 5
@@ -821,7 +821,7 @@ Partial Class Form1
         '
         Me.Label49.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(213, 34)
+        Me.Label49.Location = New System.Drawing.Point(212, 34)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(111, 13)
         Me.Label49.TabIndex = 34
@@ -905,7 +905,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.ColumnCount = 3
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.58586!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41414!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label11, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TestCheckBox, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label51, 2, 1)
@@ -953,7 +953,7 @@ Partial Class Form1
         '
         Me.Label51.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label51.AutoSize = True
-        Me.Label51.Location = New System.Drawing.Point(213, 34)
+        Me.Label51.Location = New System.Drawing.Point(212, 34)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(112, 13)
         Me.Label51.TabIndex = 34
@@ -1025,7 +1025,7 @@ Partial Class Form1
         '
         Me.TestPlanAttachement.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.TestPlanAttachement.Enabled = False
-        Me.TestPlanAttachement.Location = New System.Drawing.Point(213, 56)
+        Me.TestPlanAttachement.Location = New System.Drawing.Point(212, 56)
         Me.TestPlanAttachement.Name = "TestPlanAttachement"
         Me.TestPlanAttachement.Size = New System.Drawing.Size(60, 20)
         Me.TestPlanAttachement.TabIndex = 5
@@ -1047,7 +1047,7 @@ Partial Class Form1
         Me.TableLayoutPanel3.ColumnCount = 3
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.58586!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41414!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TestLabCheckBox, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.TestLabAttachment, 2, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.Label53, 2, 1)
@@ -1085,7 +1085,7 @@ Partial Class Form1
         '
         Me.TestLabAttachment.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.TestLabAttachment.Enabled = False
-        Me.TestLabAttachment.Location = New System.Drawing.Point(213, 56)
+        Me.TestLabAttachment.Location = New System.Drawing.Point(212, 56)
         Me.TestLabAttachment.Name = "TestLabAttachment"
         Me.TestLabAttachment.Size = New System.Drawing.Size(60, 20)
         Me.TestLabAttachment.TabIndex = 5
@@ -1095,7 +1095,7 @@ Partial Class Form1
         '
         Me.Label53.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label53.AutoSize = True
-        Me.Label53.Location = New System.Drawing.Point(213, 34)
+        Me.Label53.Location = New System.Drawing.Point(212, 34)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(107, 13)
         Me.Label53.TabIndex = 37
@@ -1402,7 +1402,7 @@ Partial Class Form1
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.Label8.ForeColor = System.Drawing.SystemColors.InfoText
         Me.Label8.Location = New System.Drawing.Point(20, 9)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(217, 24)
@@ -1470,6 +1470,7 @@ Partial Class Form1
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Populate)
+        Me.ForeColor = System.Drawing.Color.Black
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form1"

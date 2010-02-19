@@ -14,11 +14,12 @@ Public Class Form1
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Populate.Click
 
-        Dim PopulateTime As TimeSpan
+        Dim PopulateDuration As TimeSpan
         Dim ConnectDuration As TimeSpan
         'should add validators of the input
         '1. all values are > 1
         'attachement file exist
+
 
 
         SetLoginTime()
@@ -29,7 +30,8 @@ Public Class Form1
             Connect()
             ProgressBar.Increment(10)
             ConnectDuration = Now.TimeOfDay - ConnectDuration
-            Result.Text = "Login Completed Successfully. Duration: " & ConnectDuration.ToString.Substring(0, 12)
+            Result.Text = "Login Completed Successfully."
+            Result.Text += vbCrLf & "Duration: " & ConnectDuration.ToString.Substring(0, 12)
             Refresh()
         Catch ex As Exception
             Result.Text = "Can't connect to Server"
@@ -37,7 +39,7 @@ Public Class Form1
         End Try
 
         Try
-            PopulateTime = Now.TimeOfDay
+            PopulateDuration = Now.TimeOfDay
 
 
             'Handle Defects
@@ -70,7 +72,7 @@ Public Class Form1
                 Handle_Tests()
                 Handle_Steps_In_Test()
 
-                Result.Text = "Handle Tests Completed Successfully"
+                Result.Text = "Creating Tests Completed Successfully"
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -79,7 +81,7 @@ Public Class Form1
             If TestLabCheckBox.Checked Then
                 Handle_Test_Sets()
 
-                Result.Text = "Handle Test Sets Completed Successfully"
+                Result.Text = "Creating Test Sets Completed Successfully"
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -90,7 +92,7 @@ Public Class Form1
             If LinkCheckBox.Checked = True And ReqCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
                 Handle_Requirements_defects_linkage()
 
-                Result.Text = "Handle Requirements-defects linkage Completed Successfully"
+                Result.Text = "Creating Requirements-defects linkage Completed Successfully"
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -101,7 +103,7 @@ Public Class Form1
             If LinkCheckBox.Checked = True And TestCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
                 Handle_Tests_defects_linkage()
 
-                Result.Text = "Handle Tests-defects linkage Completed Successfully"
+                Result.Text = "Creating Tests-defects linkage Completed Successfully"
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -112,14 +114,14 @@ Public Class Form1
             If ReqCheckBox.Checked And TestCheckBox.Checked Then
                 Handle_Req_test_coverage()
 
-                Result.Text = "Handle Tests-Requirements linkage Completed Successfully"
+                Result.Text = "Creating Tests-Requirements linkage Completed Successfully"
                 ProgressBar.Increment(10)
                 Refresh()
             End If
-            PopulateTime = Now.TimeOfDay - PopulateTime
+            PopulateDuration = Now.TimeOfDay - PopulateDuration
             Result.Text = "Completed Successfully."
             Result.Text += vbCrLf & "Establishing Connection duration: " & ConnectDuration.ToString.Substring(0, 12)
-            Result.Text += vbCrLf & "Poplulation duration: " & PopulateTime.ToString.Substring(0, 12)
+            Result.Text += vbCrLf & "Poplulation duration: " & PopulateDuration.ToString.Substring(0, 12)
 
 
         Catch exp As Exception
