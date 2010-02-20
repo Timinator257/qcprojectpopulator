@@ -87,9 +87,7 @@ Partial Class Form1
         Me.ReqCheckBox = New System.Windows.Forms.CheckBox
         Me.ReqAttachment = New System.Windows.Forms.TextBox
         Me.Label49 = New System.Windows.Forms.Label
-        Me.Label30 = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
-        Me.TestCoverageTextBox = New System.Windows.Forms.TextBox
         Me.ReqLevels = New System.Windows.Forms.TextBox
         Me.ReqsNum = New System.Windows.Forms.TextBox
         Me.TabPage3 = New System.Windows.Forms.TabPage
@@ -135,6 +133,19 @@ Partial Class Form1
         Me.Label56 = New System.Windows.Forms.Label
         Me.Label55 = New System.Windows.Forms.Label
         Me.Label57 = New System.Windows.Forms.Label
+        Me.TracebilityTextBox = New System.Windows.Forms.TextBox
+        Me.Label59 = New System.Windows.Forms.Label
+        Me.TestCoverageTextBox = New System.Windows.Forms.TextBox
+        Me.Label31 = New System.Windows.Forms.Label
+        Me.Label61 = New System.Windows.Forms.Label
+        Me.Label62 = New System.Windows.Forms.Label
+        Me.Label30 = New System.Windows.Forms.Label
+        Me.Label63 = New System.Windows.Forms.Label
+        Me.Label64 = New System.Windows.Forms.Label
+        Me.Label65 = New System.Windows.Forms.Label
+        Me.Label66 = New System.Windows.Forms.Label
+        Me.Label58 = New System.Windows.Forms.Label
+        Me.Label60 = New System.Windows.Forms.Label
         Me.CommonTabPage = New System.Windows.Forms.TabPage
         Me.AttachmentCheckBox = New System.Windows.Forms.CheckBox
         Me.AttachmentBrowse = New System.Windows.Forms.Button
@@ -151,10 +162,6 @@ Partial Class Form1
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.OpenFD = New System.Windows.Forms.OpenFileDialog
         Me.SaveLogFD = New System.Windows.Forms.SaveFileDialog
-        Me.TracebilityTextBox = New System.Windows.Forms.TextBox
-        Me.Label58 = New System.Windows.Forms.Label
-        Me.Label59 = New System.Windows.Forms.Label
-        Me.Label60 = New System.Windows.Forms.Label
         Me.Panel1.SuspendLayout()
         Me.TabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -299,7 +306,7 @@ Partial Class Form1
         '
         'Populate
         '
-        Me.Populate.Location = New System.Drawing.Point(342, 483)
+        Me.Populate.Location = New System.Drawing.Point(345, 483)
         Me.Populate.Name = "Populate"
         Me.Populate.Size = New System.Drawing.Size(67, 25)
         Me.Populate.TabIndex = 2
@@ -319,7 +326,7 @@ Partial Class Form1
         Me.TabControl.Location = New System.Drawing.Point(12, 215)
         Me.TabControl.Name = "TabControl"
         Me.TabControl.SelectedIndex = 0
-        Me.TabControl.Size = New System.Drawing.Size(401, 164)
+        Me.TabControl.Size = New System.Drawing.Size(401, 173)
         Me.TabControl.TabIndex = 1
         '
         'TabPage1
@@ -329,7 +336,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(374, 138)
+        Me.TabPage1.Size = New System.Drawing.Size(393, 147)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Defects"
         '
@@ -341,7 +348,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(0, 3)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(378, 137)
+        Me.TabControl1.Size = New System.Drawing.Size(390, 144)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage6
@@ -355,7 +362,7 @@ Partial Class Form1
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage6.Size = New System.Drawing.Size(370, 111)
+        Me.TabPage6.Size = New System.Drawing.Size(382, 118)
         Me.TabPage6.TabIndex = 0
         Me.TabPage6.Text = "General"
         '
@@ -382,9 +389,9 @@ Partial Class Form1
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(3, 30)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(96, 13)
+        Me.Label7.Size = New System.Drawing.Size(98, 13)
         Me.Label7.TabIndex = 29
-        Me.Label7.Text = "Quantity of defects"
+        Me.Label7.Text = "Quantity of Defects"
         '
         'DefectsNum
         '
@@ -425,7 +432,7 @@ Partial Class Form1
         Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage7.Size = New System.Drawing.Size(370, 111)
+        Me.TabPage7.Size = New System.Drawing.Size(382, 118)
         Me.TabPage7.TabIndex = 1
         Me.TabPage7.Text = "Severity"
         '
@@ -589,7 +596,7 @@ Partial Class Form1
         Me.TabPage8.Location = New System.Drawing.Point(4, 22)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage8.Size = New System.Drawing.Size(370, 111)
+        Me.TabPage8.Size = New System.Drawing.Size(382, 118)
         Me.TabPage8.TabIndex = 2
         Me.TabPage8.Text = "Status"
         '
@@ -763,7 +770,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(393, 138)
+        Me.TabPage2.Size = New System.Drawing.Size(393, 147)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Requirements"
         '
@@ -772,14 +779,12 @@ Partial Class Form1
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.58586!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41414!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Label6, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.ReqCheckBox, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.ReqAttachment, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.Label49, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label30, 0, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.Label13, 0, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.TestCoverageTextBox, 1, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.ReqLevels, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.ReqsNum, 1, 2)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(6, 3)
@@ -799,9 +804,9 @@ Partial Class Form1
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(3, 58)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(105, 13)
+        Me.Label6.Size = New System.Drawing.Size(112, 13)
         Me.Label6.TabIndex = 16
-        Me.Label6.Text = "Num of Reqs in level"
+        Me.Label6.Text = "Requirements in Level"
         '
         'ReqCheckBox
         '
@@ -818,7 +823,7 @@ Partial Class Form1
         '
         Me.ReqAttachment.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.ReqAttachment.Enabled = False
-        Me.ReqAttachment.Location = New System.Drawing.Point(205, 56)
+        Me.ReqAttachment.Location = New System.Drawing.Point(204, 56)
         Me.ReqAttachment.Name = "ReqAttachment"
         Me.ReqAttachment.Size = New System.Drawing.Size(60, 20)
         Me.ReqAttachment.TabIndex = 5
@@ -828,21 +833,11 @@ Partial Class Form1
         '
         Me.Label49.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(205, 34)
+        Me.Label49.Location = New System.Drawing.Point(204, 34)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(111, 13)
         Me.Label49.TabIndex = 34
         Me.Label49.Text = "Reqs with Attachment"
-        '
-        'Label30
-        '
-        Me.Label30.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(3, 82)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(77, 13)
-        Me.Label30.TabIndex = 20
-        Me.Label30.Text = "Test Coverage"
         '
         'Label13
         '
@@ -850,17 +845,9 @@ Partial Class Form1
         Me.Label13.AutoSize = True
         Me.Label13.Location = New System.Drawing.Point(3, 34)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(66, 13)
+        Me.Label13.Size = New System.Drawing.Size(106, 13)
         Me.Label13.TabIndex = 18
-        Me.Label13.Text = "Reqs Levels"
-        '
-        'TestCoverageTextBox
-        '
-        Me.TestCoverageTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.TestCoverageTextBox.Location = New System.Drawing.Point(121, 80)
-        Me.TestCoverageTextBox.Name = "TestCoverageTextBox"
-        Me.TestCoverageTextBox.Size = New System.Drawing.Size(60, 20)
-        Me.TestCoverageTextBox.TabIndex = 3
+        Me.Label13.Text = "Requirements Levels"
         '
         'ReqLevels
         '
@@ -885,7 +872,7 @@ Partial Class Form1
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(393, 138)
+        Me.TabPage3.Size = New System.Drawing.Size(393, 147)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "TestPlan"
         '
@@ -894,7 +881,7 @@ Partial Class Form1
         Me.TableLayoutPanel2.ColumnCount = 3
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.58586!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41414!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label11, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TestCheckBox, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label51, 2, 1)
@@ -942,7 +929,7 @@ Partial Class Form1
         '
         Me.Label51.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label51.AutoSize = True
-        Me.Label51.Location = New System.Drawing.Point(205, 34)
+        Me.Label51.Location = New System.Drawing.Point(204, 34)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(112, 13)
         Me.Label51.TabIndex = 34
@@ -964,9 +951,9 @@ Partial Class Form1
         Me.Label14.AutoSize = True
         Me.Label14.Location = New System.Drawing.Point(3, 82)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(69, 13)
+        Me.Label14.Size = New System.Drawing.Size(73, 13)
         Me.Label14.TabIndex = 26
-        Me.Label14.Text = "Tests in level"
+        Me.Label14.Text = "Tests in Level"
         '
         'StepsTextBox
         '
@@ -1014,7 +1001,7 @@ Partial Class Form1
         '
         Me.TestPlanAttachement.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.TestPlanAttachement.Enabled = False
-        Me.TestPlanAttachement.Location = New System.Drawing.Point(205, 56)
+        Me.TestPlanAttachement.Location = New System.Drawing.Point(204, 56)
         Me.TestPlanAttachement.Name = "TestPlanAttachement"
         Me.TestPlanAttachement.Size = New System.Drawing.Size(60, 20)
         Me.TestPlanAttachement.TabIndex = 5
@@ -1027,7 +1014,7 @@ Partial Class Form1
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(393, 138)
+        Me.TabPage4.Size = New System.Drawing.Size(393, 147)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "TestLab"
         '
@@ -1036,7 +1023,7 @@ Partial Class Form1
         Me.TableLayoutPanel3.ColumnCount = 3
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.58586!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.41414!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.TestLabCheckBox, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.TestLabAttachment, 2, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.Label53, 2, 1)
@@ -1074,7 +1061,7 @@ Partial Class Form1
         '
         Me.TestLabAttachment.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.TestLabAttachment.Enabled = False
-        Me.TestLabAttachment.Location = New System.Drawing.Point(205, 56)
+        Me.TestLabAttachment.Location = New System.Drawing.Point(204, 56)
         Me.TestLabAttachment.Name = "TestLabAttachment"
         Me.TestLabAttachment.Size = New System.Drawing.Size(60, 20)
         Me.TestLabAttachment.TabIndex = 5
@@ -1084,7 +1071,7 @@ Partial Class Form1
         '
         Me.Label53.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label53.AutoSize = True
-        Me.Label53.Location = New System.Drawing.Point(205, 34)
+        Me.Label53.Location = New System.Drawing.Point(204, 34)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(107, 13)
         Me.Label53.TabIndex = 37
@@ -1138,9 +1125,9 @@ Partial Class Form1
         Me.Label38.AutoSize = True
         Me.Label38.Location = New System.Drawing.Point(3, 82)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(88, 13)
+        Me.Label38.Size = New System.Drawing.Size(92, 13)
         Me.Label38.TabIndex = 32
-        Me.Label38.Text = "Test Sets in level"
+        Me.Label38.Text = "Test Sets in Level"
         '
         'Label43
         '
@@ -1169,25 +1156,24 @@ Partial Class Form1
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(393, 138)
+        Me.TabPage5.Size = New System.Drawing.Size(393, 147)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Linkage"
         '
         'TableLayoutPanel4
         '
-        Me.TableLayoutPanel4.ColumnCount = 4
+        Me.TableLayoutPanel4.ColumnCount = 5
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78.0!))
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39.0!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167.0!))
-        Me.TableLayoutPanel4.Controls.Add(Me.Label60, 0, 4)
-        Me.TableLayoutPanel4.Controls.Add(Me.Label58, 0, 4)
-        Me.TableLayoutPanel4.Controls.Add(Me.LinksBetweenDefects, 3, 3)
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.LinksBetweenDefects, 4, 3)
         Me.TableLayoutPanel4.Controls.Add(Me.LinkCheckBox, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.TestDefectLnk, 3, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.TestDefectLnk, 4, 2)
         Me.TableLayoutPanel4.Controls.Add(Me.Label32, 0, 3)
         Me.TableLayoutPanel4.Controls.Add(Me.Label16, 0, 2)
-        Me.TableLayoutPanel4.Controls.Add(Me.ReqDefectlnk, 3, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.ReqDefectlnk, 4, 1)
         Me.TableLayoutPanel4.Controls.Add(Me.Label15, 0, 1)
         Me.TableLayoutPanel4.Controls.Add(Me.Label47, 1, 1)
         Me.TableLayoutPanel4.Controls.Add(Me.Label52, 2, 1)
@@ -1197,23 +1183,35 @@ Partial Class Form1
         Me.TableLayoutPanel4.Controls.Add(Me.Label56, 2, 2)
         Me.TableLayoutPanel4.Controls.Add(Me.Label55, 2, 0)
         Me.TableLayoutPanel4.Controls.Add(Me.Label57, 2, 3)
-        Me.TableLayoutPanel4.Controls.Add(Me.TracebilityTextBox, 3, 4)
+        Me.TableLayoutPanel4.Controls.Add(Me.TracebilityTextBox, 4, 4)
         Me.TableLayoutPanel4.Controls.Add(Me.Label59, 2, 4)
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(6, 3)
+        Me.TableLayoutPanel4.Controls.Add(Me.TestCoverageTextBox, 4, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label31, 1, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label61, 2, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label62, 0, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label30, 3, 1)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label63, 3, 2)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label64, 3, 3)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label66, 3, 5)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label58, 0, 4)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label60, 1, 4)
+        Me.TableLayoutPanel4.Controls.Add(Me.Label65, 3, 4)
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(8, 6)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 5
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(365, 126)
+        Me.TableLayoutPanel4.RowCount = 6
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(381, 135)
         Me.TableLayoutPanel4.TabIndex = 36
         '
         'LinksBetweenDefects
         '
         Me.LinksBetweenDefects.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.LinksBetweenDefects.Location = New System.Drawing.Point(201, 80)
+        Me.LinksBetweenDefects.Location = New System.Drawing.Point(284, 72)
         Me.LinksBetweenDefects.Name = "LinksBetweenDefects"
         Me.LinksBetweenDefects.Size = New System.Drawing.Size(60, 20)
         Me.LinksBetweenDefects.TabIndex = 3
@@ -1222,7 +1220,7 @@ Partial Class Form1
         '
         Me.LinkCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.LinkCheckBox.AutoSize = True
-        Me.LinkCheckBox.Location = New System.Drawing.Point(3, 6)
+        Me.LinkCheckBox.Location = New System.Drawing.Point(3, 5)
         Me.LinkCheckBox.Name = "LinkCheckBox"
         Me.LinkCheckBox.Size = New System.Drawing.Size(61, 17)
         Me.LinkCheckBox.TabIndex = 0
@@ -1232,7 +1230,7 @@ Partial Class Form1
         'TestDefectLnk
         '
         Me.TestDefectLnk.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.TestDefectLnk.Location = New System.Drawing.Point(201, 56)
+        Me.TestDefectLnk.Location = New System.Drawing.Point(284, 51)
         Me.TestDefectLnk.Name = "TestDefectLnk"
         Me.TestDefectLnk.Size = New System.Drawing.Size(60, 20)
         Me.TestDefectLnk.TabIndex = 2
@@ -1241,7 +1239,7 @@ Partial Class Form1
         '
         Me.Label32.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(3, 82)
+        Me.Label32.Location = New System.Drawing.Point(3, 73)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(47, 13)
         Me.Label32.TabIndex = 34
@@ -1251,7 +1249,7 @@ Partial Class Form1
         '
         Me.Label16.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(3, 58)
+        Me.Label16.Location = New System.Drawing.Point(3, 52)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(36, 13)
         Me.Label16.TabIndex = 30
@@ -1260,7 +1258,7 @@ Partial Class Form1
         'ReqDefectlnk
         '
         Me.ReqDefectlnk.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.ReqDefectlnk.Location = New System.Drawing.Point(201, 32)
+        Me.ReqDefectlnk.Location = New System.Drawing.Point(284, 30)
         Me.ReqDefectlnk.Name = "ReqDefectlnk"
         Me.ReqDefectlnk.Size = New System.Drawing.Size(60, 20)
         Me.ReqDefectlnk.TabIndex = 1
@@ -1269,7 +1267,7 @@ Partial Class Form1
         '
         Me.Label15.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(3, 34)
+        Me.Label15.Location = New System.Drawing.Point(3, 31)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(66, 13)
         Me.Label15.TabIndex = 32
@@ -1279,7 +1277,7 @@ Partial Class Form1
         '
         Me.Label47.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label47.AutoSize = True
-        Me.Label47.Location = New System.Drawing.Point(81, 34)
+        Me.Label47.Location = New System.Drawing.Point(81, 31)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(31, 13)
         Me.Label47.TabIndex = 35
@@ -1289,7 +1287,7 @@ Partial Class Form1
         '
         Me.Label52.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label52.AutoSize = True
-        Me.Label52.Location = New System.Drawing.Point(120, 34)
+        Me.Label52.Location = New System.Drawing.Point(120, 31)
         Me.Label52.Name = "Label52"
         Me.Label52.Size = New System.Drawing.Size(44, 13)
         Me.Label52.TabIndex = 38
@@ -1299,7 +1297,7 @@ Partial Class Form1
         '
         Me.Label48.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(81, 58)
+        Me.Label48.Location = New System.Drawing.Point(81, 52)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(31, 13)
         Me.Label48.TabIndex = 41
@@ -1309,7 +1307,7 @@ Partial Class Form1
         '
         Me.Label50.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label50.AutoSize = True
-        Me.Label50.Location = New System.Drawing.Point(81, 82)
+        Me.Label50.Location = New System.Drawing.Point(81, 73)
         Me.Label50.Name = "Label50"
         Me.Label50.Size = New System.Drawing.Size(31, 13)
         Me.Label50.TabIndex = 42
@@ -1327,7 +1325,7 @@ Partial Class Form1
         '
         Me.Label56.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label56.AutoSize = True
-        Me.Label56.Location = New System.Drawing.Point(120, 58)
+        Me.Label56.Location = New System.Drawing.Point(120, 52)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(44, 13)
         Me.Label56.TabIndex = 43
@@ -1345,11 +1343,137 @@ Partial Class Form1
         '
         Me.Label57.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label57.AutoSize = True
-        Me.Label57.Location = New System.Drawing.Point(120, 82)
+        Me.Label57.Location = New System.Drawing.Point(120, 73)
         Me.Label57.Name = "Label57"
         Me.Label57.Size = New System.Drawing.Size(44, 13)
         Me.Label57.TabIndex = 44
         Me.Label57.Text = "Defects"
+        '
+        'TracebilityTextBox
+        '
+        Me.TracebilityTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.TracebilityTextBox.Location = New System.Drawing.Point(284, 93)
+        Me.TracebilityTextBox.Name = "TracebilityTextBox"
+        Me.TracebilityTextBox.Size = New System.Drawing.Size(60, 20)
+        Me.TracebilityTextBox.TabIndex = 4
+        '
+        'Label59
+        '
+        Me.Label59.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label59.AutoSize = True
+        Me.Label59.Location = New System.Drawing.Point(120, 94)
+        Me.Label59.Name = "Label59"
+        Me.Label59.Size = New System.Drawing.Size(66, 13)
+        Me.Label59.TabIndex = 47
+        Me.Label59.Text = "Requirments"
+        '
+        'TestCoverageTextBox
+        '
+        Me.TestCoverageTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.TestCoverageTextBox.Location = New System.Drawing.Point(284, 114)
+        Me.TestCoverageTextBox.Name = "TestCoverageTextBox"
+        Me.TestCoverageTextBox.Size = New System.Drawing.Size(60, 20)
+        Me.TestCoverageTextBox.TabIndex = 5
+        '
+        'Label31
+        '
+        Me.Label31.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(81, 116)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(31, 13)
+        Me.Label31.TabIndex = 50
+        Me.Label31.Text = "<==> "
+        '
+        'Label61
+        '
+        Me.Label61.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label61.AutoSize = True
+        Me.Label61.Location = New System.Drawing.Point(120, 116)
+        Me.Label61.Name = "Label61"
+        Me.Label61.Size = New System.Drawing.Size(66, 13)
+        Me.Label61.TabIndex = 51
+        Me.Label61.Text = "Requirments"
+        '
+        'Label62
+        '
+        Me.Label62.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label62.AutoSize = True
+        Me.Label62.Location = New System.Drawing.Point(3, 116)
+        Me.Label62.Name = "Label62"
+        Me.Label62.Size = New System.Drawing.Size(36, 13)
+        Me.Label62.TabIndex = 52
+        Me.Label62.Text = "Tests "
+        '
+        'Label30
+        '
+        Me.Label30.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(209, 31)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(51, 13)
+        Me.Label30.TabIndex = 53
+        Me.Label30.Text = "(Linkage)"
+        '
+        'Label63
+        '
+        Me.Label63.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label63.AutoSize = True
+        Me.Label63.Location = New System.Drawing.Point(209, 52)
+        Me.Label63.Name = "Label63"
+        Me.Label63.Size = New System.Drawing.Size(51, 13)
+        Me.Label63.TabIndex = 54
+        Me.Label63.Text = "(Linkage)"
+        '
+        'Label64
+        '
+        Me.Label64.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label64.AutoSize = True
+        Me.Label64.Location = New System.Drawing.Point(209, 73)
+        Me.Label64.Name = "Label64"
+        Me.Label64.Size = New System.Drawing.Size(51, 13)
+        Me.Label64.TabIndex = 55
+        Me.Label64.Text = "(Linkage)"
+        '
+        'Label65
+        '
+        Me.Label65.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label65.AutoSize = True
+        Me.Label65.Location = New System.Drawing.Point(209, 94)
+        Me.Label65.Name = "Label65"
+        Me.Label65.Size = New System.Drawing.Size(67, 13)
+        Me.Label65.TabIndex = 56
+        Me.Label65.Text = "(Traceability)"
+        '
+        'Label66
+        '
+        Me.Label66.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label66.AutoSize = True
+        Me.Label66.Location = New System.Drawing.Point(209, 116)
+        Me.Label66.Name = "Label66"
+        Me.Label66.Size = New System.Drawing.Size(59, 13)
+        Me.Label66.TabIndex = 57
+        Me.Label66.Text = "(Coverage)"
+        '
+        'Label58
+        '
+        Me.Label58.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label58.AutoSize = True
+        Me.Label58.Location = New System.Drawing.Point(3, 94)
+        Me.Label58.Name = "Label58"
+        Me.Label58.Size = New System.Drawing.Size(66, 13)
+        Me.Label58.TabIndex = 46
+        Me.Label58.Text = "Requirments"
+        '
+        'Label60
+        '
+        Me.Label60.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label60.AutoSize = True
+        Me.Label60.Location = New System.Drawing.Point(81, 94)
+        Me.Label60.Name = "Label60"
+        Me.Label60.Size = New System.Drawing.Size(31, 13)
+        Me.Label60.TabIndex = 48
+        Me.Label60.Text = "<==> "
         '
         'CommonTabPage
         '
@@ -1360,7 +1484,7 @@ Partial Class Form1
         Me.CommonTabPage.Location = New System.Drawing.Point(4, 22)
         Me.CommonTabPage.Name = "CommonTabPage"
         Me.CommonTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.CommonTabPage.Size = New System.Drawing.Size(393, 138)
+        Me.CommonTabPage.Size = New System.Drawing.Size(393, 147)
         Me.CommonTabPage.TabIndex = 5
         Me.CommonTabPage.Text = "Attachment"
         '
@@ -1401,7 +1525,7 @@ Partial Class Form1
         Me.Logger.Location = New System.Drawing.Point(4, 22)
         Me.Logger.Name = "Logger"
         Me.Logger.Padding = New System.Windows.Forms.Padding(3)
-        Me.Logger.Size = New System.Drawing.Size(374, 138)
+        Me.Logger.Size = New System.Drawing.Size(393, 147)
         Me.Logger.TabIndex = 6
         Me.Logger.Text = "Logger"
         '
@@ -1458,16 +1582,16 @@ Partial Class Form1
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.Result)
         Me.Panel3.Controls.Add(Me.Label9)
-        Me.Panel3.Location = New System.Drawing.Point(12, 383)
+        Me.Panel3.Location = New System.Drawing.Point(12, 394)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(397, 83)
+        Me.Panel3.Size = New System.Drawing.Size(401, 83)
         Me.Panel3.TabIndex = 14
         '
         'ProgressBar
         '
         Me.ProgressBar.Location = New System.Drawing.Point(67, 485)
         Me.ProgressBar.Name = "ProgressBar"
-        Me.ProgressBar.Size = New System.Drawing.Size(265, 23)
+        Me.ProgressBar.Size = New System.Drawing.Size(272, 23)
         Me.ProgressBar.TabIndex = 14
         '
         'Label24
@@ -1491,44 +1615,6 @@ Partial Class Form1
         'OpenFD
         '
         Me.OpenFD.FileName = "OpenFileDialog1"
-        '
-        'TracebilityTextBox
-        '
-        Me.TracebilityTextBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.TracebilityTextBox.Location = New System.Drawing.Point(201, 104)
-        Me.TracebilityTextBox.Name = "TracebilityTextBox"
-        Me.TracebilityTextBox.Size = New System.Drawing.Size(60, 20)
-        Me.TracebilityTextBox.TabIndex = 45
-        '
-        'Label58
-        '
-        Me.Label58.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label58.AutoSize = True
-        Me.Label58.Location = New System.Drawing.Point(3, 107)
-        Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(66, 13)
-        Me.Label58.TabIndex = 46
-        Me.Label58.Text = "Requirments"
-        '
-        'Label59
-        '
-        Me.Label59.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label59.AutoSize = True
-        Me.Label59.Location = New System.Drawing.Point(120, 107)
-        Me.Label59.Name = "Label59"
-        Me.Label59.Size = New System.Drawing.Size(66, 13)
-        Me.Label59.TabIndex = 47
-        Me.Label59.Text = "Requirments"
-        '
-        'Label60
-        '
-        Me.Label60.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label60.AutoSize = True
-        Me.Label60.Location = New System.Drawing.Point(81, 107)
-        Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(31, 13)
-        Me.Label60.TabIndex = 48
-        Me.Label60.Text = "<==> "
         '
         'Form1
         '
@@ -1624,8 +1710,6 @@ Partial Class Form1
     Friend WithEvents ProjectsComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents DomainComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents Label24 As System.Windows.Forms.Label
-    Friend WithEvents Label30 As System.Windows.Forms.Label
-    Friend WithEvents TestCoverageTextBox As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents LinksBetweenDefects As System.Windows.Forms.TextBox
     Friend WithEvents Label32 As System.Windows.Forms.Label
@@ -1714,5 +1798,14 @@ Partial Class Form1
     Friend WithEvents Label58 As System.Windows.Forms.Label
     Friend WithEvents TracebilityTextBox As System.Windows.Forms.TextBox
     Friend WithEvents Label59 As System.Windows.Forms.Label
+    Friend WithEvents TestCoverageTextBox As System.Windows.Forms.TextBox
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents Label61 As System.Windows.Forms.Label
+    Friend WithEvents Label62 As System.Windows.Forms.Label
+    Friend WithEvents Label30 As System.Windows.Forms.Label
+    Friend WithEvents Label63 As System.Windows.Forms.Label
+    Friend WithEvents Label64 As System.Windows.Forms.Label
+    Friend WithEvents Label65 As System.Windows.Forms.Label
+    Friend WithEvents Label66 As System.Windows.Forms.Label
 
 End Class
