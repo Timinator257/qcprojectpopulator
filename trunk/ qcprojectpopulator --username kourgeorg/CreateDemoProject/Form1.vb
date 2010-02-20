@@ -887,6 +887,8 @@ Public Class Form1
         LogFile.WriteLine("<html>")
         LogFile.WriteLine("<head>")
         LogFile.WriteLine("<title>QC Project Data Populator Logger</title>")
+        LogFile.WriteLine("<p style=""color: #3A3A3A; font-size: xx-large; font-weight: bold; font-style: italic"">QC Project Data Populator</p>")
+        LogFile.WriteLine("<p style=""color: #224466; font-size: medium; font-weight: bold"">HP Software R&D Internal</p>")
         LogFile.WriteLine("<style type=""text/css"">")
         LogFile.WriteLine("</style>")
         LogFile.WriteLine("</head>")
