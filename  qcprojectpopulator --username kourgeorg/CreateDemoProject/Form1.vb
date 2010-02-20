@@ -10,39 +10,39 @@ Public Class Form1
     Dim LogFileName As String
     Dim LogFile As System.IO.StreamWriter
     Dim log As String
+    Dim LogState As Boolean
 
 
     Private Sub SetLoginTime()
-        LoginTime = Now.Date.ToString.Substring(0, 9).Replace("/", "-") & " " & Now.TimeOfDay.ToString.Replace(":", "-")
+        LoginTime = Now.Date.ToString.Substring(0, 10) & " " & Now.TimeOfDay.ToString.Substring(0, 8)
+
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Populate.Click
 
-        Dim PopulateDuration As TimeSpan
-        Dim ConnectDuration As TimeSpan
+
+
         'should add validators of the input
         '1. all values are > 1
         'attachement file exist
+        SetLoginTime()
 
         If LoggerCheckBox.Checked Then
             InitializeLogFile()
         End If
 
-        SetLoginTime()
+
+        LogState = True 'start redirect all text in result to the log file
         ProgressBar.Value = 0
         Try 'connecting to the selected project
+            Dim ConnectDuration As TimeSpan
             Result.Text = "Connecting to " & ProjectsComboBox.SelectedText & " Project"
-
             ConnectDuration = Now.TimeOfDay
             Connect()
             ProgressBar.Increment(10)
             ConnectDuration = Now.TimeOfDay - ConnectDuration
-            Result.Text = "Login Completed Successfully."
-            Result.Text += vbCrLf & "Duration: " & ConnectDuration.ToString.Substring(0, 12)
-
-            AddEventToLog(2, "Duration of log in: " & ConnectDuration.ToString.Substring(0, 12))
-
-
+            Result.Text = "Login Completed Successfully." & vbCrLf & "Duration: " & ConnectDuration.ToString.Substring(0, 12)
             Refresh()
+
         Catch ex As Exception
             Result.Text = "Can't connect to Server"
             AddEventToLog(1, "Can't connect to Server")
@@ -50,14 +50,23 @@ Public Class Form1
         End Try
 
         Try 'start populating
+            Dim PopulateDuration As TimeSpan
             PopulateDuration = Now.TimeOfDay
             AddEventToLog(1, "Start populating")
+
+
             'Handle Defects
             If DefectsCheckBox.Checked = True Then
+                'start stopper
+                Dim DefectDuration = Now.TimeOfDay
                 Handle_Defects()
-                Handle_Defects_Relations()
+                If LinkCheckBox.Checked Then
+                    Handle_Defects_Relations()
+                End If
+                'stop stopper
+                DefectDuration = Now.TimeOfDay - DefectDuration
 
-                Result.Text = "Creating Defects Completed Successfully"
+                Result.Text = "Creating Defects Completed Successfully" & vbCrLf & "Duration: " & DefectDuration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -66,10 +75,13 @@ Public Class Form1
 
             'Handle Requirements
             If ReqCheckBox.Checked = True Then
+                'start stopper
+                Dim RequirementDuration = Now.TimeOfDay
                 Handle_Requirements()
-                Handle_req_tracebility()
 
-                Result.Text = "Creating Requirements Completed Successfully"
+                'stop stopper
+                RequirementDuration = Now.TimeOfDay - RequirementDuration
+                Result.Text = "Creating Requirements Completed Successfully" & vbCrLf & "Duration: " & RequirementDuration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -79,19 +91,24 @@ Public Class Form1
 
             'Handle Tests
             If TestCheckBox.Checked = True Then
+                'start stopper
+                Dim TestsDuration = Now.TimeOfDay
                 Handle_Tests()
-                Handle_Steps_In_Test()
-
-                Result.Text = "Creating Tests Completed Successfully"
+                'stop stopper
+                TestsDuration = Now.TimeOfDay - TestsDuration
+                Result.Text = "Creating Tests Completed Successfully" & vbCrLf & "Duration: " & TestsDuration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
 
             'Handle Test Lab
             If TestLabCheckBox.Checked Then
+                'start stopper
+                Dim TestSetsDuration = Now.TimeOfDay
                 Handle_Test_Sets()
-
-                Result.Text = "Creating Test Sets Completed Successfully"
+                'stop stopper
+                TestSetsDuration = Now.TimeOfDay - TestSetsDuration
+                Result.Text = "Creating Test Sets Completed Successfully" & vbCrLf & "Duration: " & TestSetsDuration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -100,9 +117,12 @@ Public Class Form1
 
             'Handles req links to defects
             If LinkCheckBox.Checked = True And ReqCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
+                'Start stopper
+                Dim Req_Def_Link_Duration = Now.TimeOfDay
                 Handle_Requirements_defects_linkage()
-
-                Result.Text = "Creating Requirements-defects linkage Completed Successfully"
+                'stop stopper
+                Req_Def_Link_Duration = Now.TimeOfDay - Req_Def_Link_Duration
+                Result.Text = "Creating Requirements-defects linkage Completed Successfully" & vbCrLf & "Duration: " & Req_Def_Link_Duration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -111,9 +131,11 @@ Public Class Form1
 
             'Handle tests links to defects
             If LinkCheckBox.Checked = True And TestCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
+                'start stopper
+                Dim Tests_def_Link_Duration = Now.TimeOfDay
                 Handle_Tests_defects_linkage()
-
-                Result.Text = "Creating Tests-defects linkage Completed Successfully"
+                Tests_def_Link_Duration = Now.TimeOfDay - Tests_def_Link_Duration
+                Result.Text = "Creating Tests-defects linkage Completed Successfully" & vbCrLf & "Duration: " & Tests_def_Link_Duration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
@@ -122,16 +144,18 @@ Public Class Form1
 
             'Handle Req-test coverage
             If ReqCheckBox.Checked And TestCheckBox.Checked Then
+                'start stopper
+                Dim Req_Test_Cov_Duration = Now.TimeOfDay
                 Handle_Req_test_coverage()
-
-                Result.Text = "Creating Tests-Requirements linkage Completed Successfully"
+                Req_Test_Cov_Duration = Now.TimeOfDay - Req_Test_Cov_Duration
+                Result.Text = "Creating Tests-Requirements linkage Completed Successfully" & vbCrLf & "Duration: " & Req_Test_Cov_Duration.ToString.Substring(0, 12)
                 ProgressBar.Increment(10)
                 Refresh()
             End If
+
+            'stop stopper
             PopulateDuration = Now.TimeOfDay - PopulateDuration
-            Result.Text = "Completed Successfully."
-            Result.Text += vbCrLf & "Establishing Connection duration: " & ConnectDuration.ToString.Substring(0, 12)
-            Result.Text += vbCrLf & "Poplulation duration: " & PopulateDuration.ToString.Substring(0, 12)
+            Result.Text = "Populating Completed Successfully." & vbCrLf & "Duration: " & PopulateDuration.ToString.Substring(0, 12)
 
 
         Catch exp As Exception
@@ -140,15 +164,19 @@ Public Class Form1
         Finally
             ProgressBar.Value = 100
             Refresh()
-            If LoggerCheckBox = CheckBox Then
+            If LoggerCheckBox.Checked = True Then
                 LogFile.Close()
             End If
+            LogState = False 'the file is closed so don't record the disconnection
         End Try
 
     End Sub
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         tdc = New TDAPIOLELib.TDConnection
+        LogFileName = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) & "\PDPLogger" & ".html"
+        LogTextBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) & "\PDPLogger" & ".html"
+        LogState = False
     End Sub
     Private Sub Login()
 
@@ -161,6 +189,7 @@ Public Class Form1
     Private Sub LoginButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoginButton.Click
 
         Try
+
             ProgressBar.Value = 0
             Disconnect()
             Dim Login_time As TimeSpan
@@ -245,29 +274,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Handle_req_tracebility()
-        Dim reqF As TDAPIOLELib.ReqFactory
-        reqF = tdc.ReqFactory
-        Dim reqList = reqF.NewList("")
-        For i = 1 To Val(TracebilityTextBox.Text)
-
-            Dim rand = GetRandomInt(1, reqList.Count)
-            Dim req As TDAPIOLELib.Req
-            Dim traceF As TDAPIOLELib.ReqTraceFactory
-            req = reqList(rand)
-            traceF = req.ReqTraceFactory(1) '1 = trace to
-            Dim randto = GetRandomInt(1, reqList.Count)
-            Try
-                traceF.AddItem(reqList(randto))
-                req.Post()
-            Catch ex As Exception
-                i -= 1
-            End Try
-
-        Next
-    End Sub
-
-
     Private Sub Handle_Defects()
 
         Dim bfact As TDAPIOLELib.BugFactory
@@ -332,7 +338,7 @@ Public Class Form1
         rejected = (Val(DefectsNum.Text) * Val(RejectTextBox.Text)) / 100 + closed
         reopen = (Val(DefectsNum.Text) * Val(ReopenTextBox.Text)) / 100 + rejected
 
-        Dim BugList As TDAPIOLELib.List
+        Dim BugList As TDAPIOLELib.List = New TDAPIOLELib.List
         BugList = NewBugList
         For i = 1 To BugList.Count
             mybug = BugList.Item(i)
@@ -357,10 +363,6 @@ Public Class Form1
 
     Private Sub Handle_Defects_Relations()
 
-        'If (Val(LinksBetweenDefects.Text) >= Val(DefectsNum.Text)) Then
-        'Throw New Exception("Number of Links between defects should be greater that the defects number")
-        ' End If
-
         Dim bfact As TDAPIOLELib.BugFactory
         bfact = tdc.BugFactory
 
@@ -369,6 +371,11 @@ Public Class Form1
         DefectList = bfact.NewList("")
         Dim ListdefectsNum As Long
         ListdefectsNum = DefectList.Count
+
+        Dim NumOfMaxLinks = Int(((ListdefectsNum - 1) * ListdefectsNum) / 2)
+        If (Val(LinksBetweenDefects.Text)) >= NumOfMaxLinks Then
+            Throw New Exception("Number of Links between defects should be Less than the number choices of (number of defects select 2)." & vbCrLf & "Refresh your combinatorics")
+        End If
 
         Dim linkF As TDAPIOLELib.LinkFactory
         Dim link As TDAPIOLELib.Link
@@ -394,7 +401,16 @@ Public Class Form1
             ilink1 = defect1
             linkF = ilink1.BugLinkFactory
             link = linkF.AddItem(defect2)
-            link.Post()
+            Try
+                AddEventToLog(1, "Linking " & defect1.ID.ToString() & " and defect " & defect2.ID.ToString())
+                link.Post()
+            Catch exp As Exception
+                If exp.Message.Contains("already linked") Then
+                    i -= 1
+                    AddEventToLog(1, "Duplication Found: Randomly chosen entities are already linked , trying again...")
+                Else : Throw exp
+                End If
+            End Try
         Next
 
     End Sub
@@ -404,6 +420,8 @@ Public Class Form1
         Dim reqF As TDAPIOLELib.ReqFactory
         reqF = tdc.ReqFactory
         Dim newR As TDAPIOLELib.Req
+
+        Dim reqList As TDAPIOLELib.List = New TDAPIOLELib.List
 
         Dim Reqcounter = 0
         Dim list1 As Queue(Of Long) = New Queue(Of Long)
@@ -425,9 +443,14 @@ Public Class Form1
 
                     With newR
                         .ParentId = FatherReqID
-                        .Name = "Sub Req " & i & " of req " & FatherReqID.ToString & " at " & LoginTime
-                        .Comment = "Sub Req " & i & " of req " & FatherReqID.ToString & " at " & LoginTime & " Comment"
+                        .Name = "Sub Req " & i & " of req " & FatherReqID.ToString
+                        If FatherReqID = 0 Then
+                            .Name &= " at " & LoginTime.Replace("/", "-").Replace(":", "-")
+                        End If
+                        .Comment = "Sub Req " & i & " of req " & FatherReqID.ToString
                         .Post()
+                        AddEventToLog(1, "Creating requirement " & newR.ID)
+                        reqList.Add(newR)
                         list2.Enqueue(newR.ID) 'Insert the created requirement in the queue
 
                         If AttachmentCheckBox.Checked Then
@@ -436,7 +459,9 @@ Public Class Form1
                                 Dim attachment As TDAPIOLELib.Attachment = AttachF.AddItem(DBNull.Value)
                                 attachment.FileName = AttachementTextBox.Text
                                 attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
+                                AddEventToLog(1, "Adding Attachmnet for Requirment " & newR.ID)
                                 attachment.Post()
+
                             End If
                         End If
                     End With
@@ -445,7 +470,39 @@ Public Class Form1
             list1 = list2
         Next
 
+        If LinkCheckBox.Checked Then
+            Handle_req_tracebility(reqList)
+        End If
+
     End Sub
+
+    Private Sub Handle_req_tracebility(ByRef ReqList As TDAPIOLELib.List)
+        Dim reqF As TDAPIOLELib.ReqFactory
+        reqF = tdc.ReqFactory
+        For i = 1 To Val(TracebilityTextBox.Text)
+            Dim rand = GetRandomInt(1, reqList.Count)
+            Dim req As TDAPIOLELib.Req
+            Dim traceF As TDAPIOLELib.ReqTraceFactory
+            req = reqList(rand)
+            traceF = req.ReqTraceFactory(1) '1 = trace to
+            Dim randto = GetRandomInt(1, reqList.Count)
+            Try
+                Dim req2 = reqList(randto)
+                traceF.AddItem(req2)
+                req.Post()
+                AddEventToLog(1, "Linking requirment " & req.ID & " to requiremnt " & req2.ID)
+            Catch ex As Exception
+                If ex.Message.Contains("already exist") Then
+                    i -= 1
+                    AddEventToLog(1, "Duplication Found: Randomly chosen entities are already linked , trying again...")
+                Else : Throw ex
+                End If
+
+            End Try
+
+        Next
+    End Sub
+
 
     Public Sub Handle_Tests()
 
@@ -471,14 +528,31 @@ Public Class Form1
                 currfold = list1.Dequeue()    ' remove the folder from list1
 
                 For i = 1 To Val(TestDirsInLevel.Text)
-                    folder = currfold.AddNode("Subfolder " & i.ToString & " of " & currfold.Name.ToString & " " & LoginTime)
+                    If currfold.NodeID = oRoot.NodeID Then
+                        folder = currfold.AddNode("Subfolder " & i.ToString & " of Folder " & currfold.NodeID.ToString & " at " & LoginTime)
+                    Else
+                        folder = currfold.AddNode("Subfolder " & i.ToString & " of Folder " & currfold.NodeID.ToString)
+                    End If
                     folder.Post()
+                    AddEventToLog(1, "Creating Test Folder " & folder.Name)
                     list2.Enqueue(folder)
                     For k = 1 To Val(TestsInLevel.Text)
                         testF = folder.TestFactory
                         test1 = testF.AddItem(System.DBNull.Value)
                         test1.Name = "Test " & k.ToString
                         test1.Post()
+                        AddEventToLog(1, "Creating Test " & test1.ID)
+                        'Handle Steps
+                        For s = 1 To Val(StepsTextBox.Text)
+                            Dim Designstep As TDAPIOLELib.DesignStep
+                            Dim DesignStepF As TDAPIOLELib.DesignStepFactory
+                            DesignStepF = test1.DesignStepFactory
+                            Designstep = DesignStepF.AddItem(DBNull.Value)
+                            Designstep.StepName = "Step " & s
+                            Designstep.StepDescription = "Step " & s & "of Test " & test1.ID.ToString
+                            Designstep.StepExpectedResult = "Expected Result of step " & s
+                            Designstep.Post()
+                        Next
                         'handle attachments
                         TestCounter += 1
                         If AttachmentCheckBox.Checked Then
@@ -488,6 +562,7 @@ Public Class Form1
                                 attachment.FileName = AttachementTextBox.Text
                                 attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
                                 attachment.Post()
+                                AddEventToLog(1, "Adding Attachment for Test " & test1.ID)
                             End If
                         End If
                     Next
@@ -496,26 +571,6 @@ Public Class Form1
             list1 = list2
         Next
 
-    End Sub
-    Private Sub Handle_Steps_In_Test()
-        Dim TestF As TDAPIOLELib.TestFactory
-        Dim TestList As TDAPIOLELib.List
-        TestF = tdc.TestFactory
-        TestList = TestF.NewList("")
-        For i = 1 To TestList.Count
-            Dim test As TDAPIOLELib.Test
-            test = TestList.Item(i)
-            For j = 1 To Val(StepsTextBox.Text)
-                Dim Designstep As TDAPIOLELib.DesignStep
-                Dim DesignStepF As TDAPIOLELib.DesignStepFactory
-                DesignStepF = test.DesignStepFactory
-                Designstep = DesignStepF.AddItem(DBNull.Value)
-                Designstep.StepName = "Step " & j
-                Designstep.StepDescription = "Step " & j & "of Test " & test.ID.ToString
-                Designstep.StepExpectedResult = "Expected Result of step " & j
-                Designstep.Post()
-            Next
-        Next
     End Sub
 
     Private Sub Handle_Test_Sets()
@@ -540,11 +595,15 @@ Public Class Form1
                 currfold = list1.Dequeue()    ' remove the folder from list1
 
                 For i = 1 To Val(SetDirsInLevel.Text)
-                    folder = currfold.AddNode("Subfolder " & i.ToString & " of " & currfold.Name.ToString & " " & LoginTime)
+                    If currfold.id = oRoot.id Then
+                        folder = currfold.AddNode("Subfolder " & i.ToString & " of " & currfold.Name & " at " & LoginTime)
+                    Else
+                        folder = currfold.AddNode("Subfolder " & i.ToString & " of " & currfold.NodeID.ToString)
+                    End If
+                    AddEventToLog(1, "Creating Folder " & folder.Name)
                     folder.Post()
                     list2.Enqueue(folder)
                     If folder.Path <> oRoot.Path Then
-
 
                         For k = 1 To Val(SetsinDir.Text)
                             Dim Tset As TDAPIOLELib.TestSet
@@ -552,6 +611,7 @@ Public Class Form1
                             setF = folder.TestSetFactory
                             Tset = setF.AddItem(System.DBNull.Value)
                             Tset.Name = "Test Set " & k.ToString
+                            AddEventToLog(1, "Creating Test Set " & Tset.Name)
                             Tset.Post()
                             'Handle attachement in test sets
                             TestSetCounter += 1
@@ -561,11 +621,12 @@ Public Class Form1
                                     Dim attachment As TDAPIOLELib.Attachment = attachF.AddItem(DBNull.Value)
                                     attachment.FileName = AttachementTextBox.Text
                                     attachment.Type = TDAPIOLELib.TDAPI_ATTACH_TYPE.TDATT_FILE
+                                    AddEventToLog(1, "Adding Attachement for Test Set " & Tset.Name)
                                     attachment.Post()
                                 End If
                             End If
                             If TestCheckBox.Checked Then
-                                Dim list As TDAPIOLELib.List
+                                Dim list As TDAPIOLELib.List = New TDAPIOLELib.List
                                 Dim TestF As TDAPIOLELib.TestFactory
                                 TestF = tdc.TestFactory
                                 list = TestF.NewList("")
@@ -589,12 +650,12 @@ Public Class Form1
 
     Private Sub Handle_Req_test_coverage()
         Dim ReqF As TDAPIOLELib.ReqFactory
-        Dim ReqList As TDAPIOLELib.List
+        Dim ReqList As TDAPIOLELib.List = New TDAPIOLELib.List
         Dim req As TDAPIOLELib.Req
 
         Dim Test As TDAPIOLELib.Test
         Dim TestF As TDAPIOLELib.TestFactory
-        Dim TestList As TDAPIOLELib.List
+        Dim TestList As TDAPIOLELib.List = New TDAPIOLELib.List
 
         Dim rand As Integer
 
@@ -634,11 +695,13 @@ Public Class Form1
                 If tempTest.ID = Test.ID Then
                     i = i - 1
                     DupCovflag = True
+                    AddEventToLog(1, "Duplication Found: Randomly chosen entities are already linked , trying again...")
                     Exit For
                 End If
             Next
             If DupCovflag = False Then
                 coverable.AddTestToCoverage(Test.ID)
+                AddEventToLog(1, "Covring Requiremnt " & req.Name & " by Test " & Test.Name)
             End If
         Next
 
@@ -677,11 +740,20 @@ Public Class Form1
             Randomize()
             Rand = Int((reqNum - 1 + 1) * Rnd()) + 1
             req = ReqList.Item(Rand)
+            Try
+                ilink = req
+                linkF = ilink.BugLinkFactory
+                link = linkF.AddItem(defect)
+                AddEventToLog(1, "Linking requirment " & req.Name & " and Defect " & defect.ID)
+                link.Post()
+            Catch ex As Exception
+                If ex.Message.Contains("already linked") Then
+                    i -= 1
+                    AddEventToLog(1, "Duplication Found: Randomly chosen entities are already linked , trying again...")
+                Else : Throw ex
+                End If
+            End Try
 
-            ilink = req
-            linkF = ilink.BugLinkFactory
-            link = linkF.AddItem(defect)
-            link.Post()
         Next
     End Sub
 
@@ -839,8 +911,16 @@ Public Class Form1
 
     Private Sub InitializeLogFile()
         'Create the log file in the filesystem
-        LogFile = New System.IO.StreamWriter(LogFileName, True)
-        LogFile.WriteLine()
+        Dim ActualLogFileName As String
+        ActualLogFileName = LogFileName
+        Dim k = 1
+        While System.IO.File.Exists(ActualLogFileName)
+            ActualLogFileName = LogFileName.Insert(LogFileName.IndexOf("."), "(" & k.ToString & ")")
+            k += 1
+        End While
+
+
+        LogFile = New System.IO.StreamWriter(ActualLogFileName, True)
         LogFile.WriteLine("<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">")
         LogFile.WriteLine("<html>")
         LogFile.WriteLine("<head>")
@@ -850,7 +930,7 @@ Public Class Form1
         LogFile.WriteLine("</head>")
         LogFile.WriteLine("<body bgcolor=""#FFFFFF"" topmargin=""6"" leftmargin=""6"">")
         LogFile.WriteLine("<hr size=""1"" noshade>")
-        LogFile.WriteLine("Log session start time" & Now.Date & " " & Now.TimeOfDay.ToString.Substring(0, 9) & "<br><br>")
+        LogFile.WriteLine("Log session start time: " & LoginTime & "<br><br>")
         LogFile.WriteLine("<table cellspacing=""0"" cellpadding=""4"" border=""1"" bordercolor=""#224466"" width=""100%"">")
         LogFile.WriteLine("<tr> <th>Time</th><th>Category</th><th>Message</th></tr>")
 
@@ -860,8 +940,8 @@ Public Class Form1
         If LoggerCheckBox.Checked Then
             SaveLogFD.InitialDirectory = Environment.SpecialFolder.Desktop.ToString()
             SaveLogFD.Title = "Save Log As"
-            SaveLogFD.FileName = "PopulatorLog" & LoginTime & ".html"
-            SaveLogFD.Filter = "HTML Files|*.html|All Files|*.*"
+            SaveLogFD.FileName = "PDPLogger"
+            SaveLogFD.Filter = "HTML Files|*.html"
             If (SaveLogFD.ShowDialog() <> DialogResult.Cancel) Then
                 LogFileName = SaveLogFD.FileName
                 LogTextBox.Text = SaveLogFD.FileName
@@ -883,7 +963,7 @@ Public Class Form1
     Private Sub AddEventToLog(ByVal Category As Integer, ByVal Message As String)
         If LoggerCheckBox.Checked Then
             LogFile.WriteLine("<tr>")
-            LogFile.WriteLine("<td>" & Now.Date & "  " & Now.TimeOfDay.ToString.Substring(0, 12) & "</td>")
+            LogFile.WriteLine("<td>" & Now.Date.ToString.Substring(0, 10) & "  " & Now.TimeOfDay.ToString.Substring(0, 8) & "</td>")
             If Category = 1 Then
                 LogFile.WriteLine("<td title=""Category"">" & "Info" & "</td>")
             Else
@@ -895,8 +975,16 @@ Public Class Form1
     End Sub
 
     Private Sub Result_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Result.TextChanged
-        AddEventToLog(1, Result.Text)
+
+        If LogState = True And LoggerCheckBox.Checked Then
+            If Result.Text.Contains("Duration") Then
+                AddEventToLog(2, Result.Text)
+            Else
+                AddEventToLog(1, Result.Text)
+            End If
+        End If
     End Sub
+
 End Class
 
 
