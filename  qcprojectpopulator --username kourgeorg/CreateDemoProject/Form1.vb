@@ -52,6 +52,12 @@ Public Class Form1
             Return
         End Try
 
+        'Check Data Integrity
+        Check_Data_integrity()
+
+
+
+
         Try 'start populating
             Dim PopulateDuration As TimeSpan
             PopulateDuration = Now.TimeOfDay
@@ -78,9 +84,6 @@ Public Class Form1
                 'start stopper
                 Dim RequirementDuration = Now.TimeOfDay
                 Handle_Requirements()
-                If LinkCheckBox.Checked Then
-                    Handle_req_tracebility()
-                End If
                 'stop stopper
                 RequirementDuration = Now.TimeOfDay - RequirementDuration
                 Result.Text = "Creating Requirements Completed Successfully" & vbCrLf & "Duration: " & RequirementDuration.ToString.Substring(0, 8)
@@ -115,10 +118,32 @@ Public Class Form1
                 Refresh()
             End If
 
+            'Handle defect-defect link
+            If DefectsCheckBox.Checked = True Then
+                'Start stopper
+                Dim Def_Def_Link_Duration = Now.TimeOfDay
+                Handle_Defects_Relations()
+                'stop stopper
+                Def_Def_Link_Duration = Now.TimeOfDay - Def_Def_Link_Duration
+                Result.Text = "Creating Defects-Defects Linkage Completed Successfully" & vbCrLf & "Duration: " & Def_Def_Link_Duration.ToString.Substring(0, 8)
+                ProgressBar.Increment(10)
+                Refresh()
+            End If
 
+            'Handle reqs-reqs link
+            If ReqCheckBox.Checked = True Then
+                'Start stopper
+                Dim Req_Req_Link_Duration = Now.TimeOfDay
+                Handle_req_traceability()
+                'stop stopper
+                Req_Req_Link_Duration = Now.TimeOfDay - Req_Req_Link_Duration
+                Result.Text = "Creating Requirements traceability Completed Successfully" & vbCrLf & "Duration: " & Req_Req_Link_Duration.ToString.Substring(0, 8)
+                ProgressBar.Increment(10)
+                Refresh()
+            End If
 
-            'Handles req links to defects
-            If LinkCheckBox.Checked = True And ReqCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
+            'Handle reqs-defect link
+            If ReqCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
                 'Start stopper
                 Dim Req_Def_Link_Duration = Now.TimeOfDay
                 Handle_Requirements_defects_linkage()
@@ -131,8 +156,8 @@ Public Class Form1
 
 
 
-            'Handle tests links to defects
-            If LinkCheckBox.Checked = True And TestCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
+            'Handle tests-defects link
+            If TestCheckBox.Checked = True And DefectsCheckBox.Checked = True Then
                 'start stopper
                 Dim Tests_def_Link_Duration = Now.TimeOfDay
                 Handle_Tests_defects_linkage()
@@ -144,7 +169,7 @@ Public Class Form1
 
 
 
-            'Handle Req-test coverage
+            'Handle Req-test links
             If ReqCheckBox.Checked And TestCheckBox.Checked Then
                 'start stopper
                 Dim Req_Test_Cov_Duration = Now.TimeOfDay
@@ -367,7 +392,7 @@ Public Class Form1
         ListdefectsNum = DefectsList.Count
 
         Dim NumOfMaxLinks = Int(((ListdefectsNum - 1) * ListdefectsNum) / 2)
-        If (Val(LinksBetweenDefects.Text)) >= NumOfMaxLinks Then
+        If (Val(DefectDefectLNK.Text)) >= NumOfMaxLinks Then
             Throw New Exception("Number of Links between defects should be Less than the number choices of (number of defects select 2)." & vbCrLf & "Refresh your combinatorics")
         End If
 
@@ -377,7 +402,7 @@ Public Class Form1
 
 
         Dim numDefectsToLink As Long
-        numDefectsToLink = Val(LinksBetweenDefects.Text)
+        numDefectsToLink = Val(DefectDefectLNK.Text)
         Dim Rand As Long
         Dim defect1, defect2 As TDAPIOLELib.Bug
 
@@ -463,10 +488,10 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Handle_req_tracebility()
+    Private Sub Handle_req_traceability()
         Dim reqF As TDAPIOLELib.ReqFactory
         reqF = tdc.ReqFactory
-        For i = 1 To Val(TracebilityTextBox.Text)
+        For i = 1 To Val(ReqReqLNK.Text)
             Dim rand = GetRandomInt(1, ReqsList.Count)
             Dim req As TDAPIOLELib.Req
             Dim traceF As TDAPIOLELib.ReqTraceFactory
@@ -643,7 +668,7 @@ Public Class Form1
 
 
 
-        For i = 1 To Val(TestCoverageTextBox.Text)
+        For i = 1 To Val(TestReqLNK.Text)
 
             'rand = Int((High - Low + 1) * Rnd()) + Low
             Do
@@ -701,7 +726,7 @@ Public Class Form1
         Dim linkF As TDAPIOLELib.LinkFactory
         Dim link As TDAPIOLELib.Link
 
-        For i = 1 To Val(ReqDefectlnk.Text)
+        For i = 1 To Val(ReqDefectLNK.Text)
             Randomize()
             Rand = Int((defectsNum - 1 + 1) * Rnd()) + 1
             defect = DefectsList.Item(Rand)
@@ -742,7 +767,7 @@ Public Class Form1
         Dim linkF As TDAPIOLELib.LinkFactory
         Dim link As TDAPIOLELib.Link
 
-        For i = 1 To Val(TestDefectLnk.Text)
+        For i = 1 To Val(TestDefectLNK.Text)
             Randomize()
             Rand = Int((defectsNum - 1 + 1) * Rnd()) + 1
             defect = DefectsList.Item(Rand)
@@ -896,7 +921,7 @@ Public Class Form1
         LogFile.WriteLine("<hr size=""1"" noshade>")
         LogFile.WriteLine("Log session start time: " & LoginTime & "<br><br>")
         LogFile.WriteLine("<table cellspacing=""0"" cellpadding=""4"" border=""1"" bordercolor=""#224466"" width=""100%"">")
-        LogFile.WriteLine("<tr> <th>Time</th><th>Category</th><th>Message</th></tr>")
+        LogFile.WriteLine("<tr> <th>Time</th><th>Memory Usage</th><th>Category</th><th>Message</th></tr>")
 
     End Sub
 
@@ -933,6 +958,7 @@ Public Class Form1
             End If
             Dim NowDay = Now.Date.ToString.Substring(0, 10)
             LogFile.WriteLine("<td>" & NowDay & "  " & NowTime & "</td>")
+            LogFile.WriteLine("<td>" & Int(GetMemoryUsage() / 1024) & " MB" & "</td>")
             If Category = 1 Then
                 LogFile.WriteLine("<td title=""Category"">" & "Info" & "</td>")
             Else
@@ -952,6 +978,14 @@ Public Class Form1
                 AddEventToLog(1, Result.Text)
             End If
         End If
+    End Sub
+
+    Private Function GetMemoryUsage() As Integer
+        Return GC.GetTotalMemory(False)
+    End Function
+
+    Private Sub Check_Data_integrity()
+
     End Sub
 
 
