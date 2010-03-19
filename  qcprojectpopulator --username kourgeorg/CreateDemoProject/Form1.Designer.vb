@@ -41,6 +41,8 @@ Partial Class Form1
         Me.TabPage1 = New System.Windows.Forms.TabPage
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage6 = New System.Windows.Forms.TabPage
+        Me.DefectDescription = New System.Windows.Forms.RichTextBox
+        Me.Label54 = New System.Windows.Forms.Label
         Me.Label46 = New System.Windows.Forms.Label
         Me.DefectAttachment = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
@@ -159,8 +161,6 @@ Partial Class Form1
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.OpenFD = New System.Windows.Forms.OpenFileDialog
         Me.SaveLogFD = New System.Windows.Forms.SaveFileDialog
-        Me.Label54 = New System.Windows.Forms.Label
-        Me.DefectDescription = New System.Windows.Forms.RichTextBox
         Me.Panel1.SuspendLayout()
         Me.TabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -206,7 +206,7 @@ Partial Class Form1
         Me.ServerURL.Name = "ServerURL"
         Me.ServerURL.Size = New System.Drawing.Size(206, 20)
         Me.ServerURL.TabIndex = 0
-        Me.ServerURL.Text = "http://localhost:8080/qcbin"
+        Me.ServerURL.Text = "http://labm1qc33:8080/qcbin"
         '
         'Panel1
         '
@@ -367,6 +367,24 @@ Partial Class Form1
         Me.TabPage6.Size = New System.Drawing.Size(382, 118)
         Me.TabPage6.TabIndex = 0
         Me.TabPage6.Text = "General"
+        '
+        'DefectDescription
+        '
+        Me.DefectDescription.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.DefectDescription.Location = New System.Drawing.Point(65, 70)
+        Me.DefectDescription.Name = "DefectDescription"
+        Me.DefectDescription.Size = New System.Drawing.Size(305, 46)
+        Me.DefectDescription.TabIndex = 33
+        Me.DefectDescription.Text = ""
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Location = New System.Drawing.Point(3, 85)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(60, 13)
+        Me.Label54.TabIndex = 32
+        Me.Label54.Text = "Description"
         '
         'Label46
         '
@@ -1587,23 +1605,6 @@ Partial Class Form1
         '
         Me.OpenFD.FileName = "OpenFileDialog1"
         '
-        'Label54
-        '
-        Me.Label54.AutoSize = True
-        Me.Label54.Location = New System.Drawing.Point(3, 82)
-        Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(60, 13)
-        Me.Label54.TabIndex = 32
-        Me.Label54.Text = "Description"
-        '
-        'DefectDescription
-        '
-        Me.DefectDescription.Location = New System.Drawing.Point(69, 72)
-        Me.DefectDescription.Name = "DefectDescription"
-        Me.DefectDescription.Size = New System.Drawing.Size(305, 40)
-        Me.DefectDescription.TabIndex = 33
-        Me.DefectDescription.Text = ""
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1620,6 +1621,7 @@ Partial Class Form1
         Me.ForeColor = System.Drawing.Color.Black
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "Project Data Populator"
         Me.Panel1.ResumeLayout(False)
@@ -1792,7 +1794,7 @@ Partial Class Form1
     Friend WithEvents Label64 As System.Windows.Forms.Label
     Friend WithEvents Label65 As System.Windows.Forms.Label
     Friend WithEvents Label66 As System.Windows.Forms.Label
-    Friend WithEvents DefectDescription As System.Windows.Forms.RichTextBox
     Friend WithEvents Label54 As System.Windows.Forms.Label
+    Friend WithEvents DefectDescription As System.Windows.Forms.RichTextBox
 
 End Class
