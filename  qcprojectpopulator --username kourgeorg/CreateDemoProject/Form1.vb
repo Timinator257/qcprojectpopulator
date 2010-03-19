@@ -320,6 +320,7 @@ Public Class Form1
             Dim mydate = Now.Date.ToString.Substring(0, 10)
             mybug.Field("BG_DETECTION_DATE") = mydate
             mybug.Status = "New"
+            mybug.Field("BG_DESCRIPTION") = DefectDescription.Text
             If i <= Critical Then
                 mybug.Priority = "5-Urgent"
                 mybug.Field("BG_SEVERITY") = "5-Urgent"
@@ -900,6 +901,7 @@ Public Class Form1
     Private Sub InitializeLogFile()
         'Create the log file in the filesystem
         Dim ActualLogFileName As String
+        LogFileName = LogTextBox.Text
         ActualLogFileName = LogFileName
         Dim k = 1
         While System.IO.File.Exists(ActualLogFileName)
