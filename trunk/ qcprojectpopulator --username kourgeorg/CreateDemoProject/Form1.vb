@@ -36,6 +36,8 @@ Public Class Form1
 
         LogState = True 'start redirect all text in result to the log file
         ProgressBar.Value = 0
+
+        PingServer()
         Try 'connecting to the selected project
             Dim ConnectDuration As TimeSpan
             Result.Text = "Connecting to " & ProjectsComboBox.SelectedText & " Project"
@@ -54,9 +56,6 @@ Public Class Form1
 
         'Check Data Integrity
         Check_Data_integrity()
-
-
-
 
         Try 'start populating
             Dim PopulateDuration As TimeSpan
@@ -90,8 +89,6 @@ Public Class Form1
                 ProgressBar.Increment(10)
                 Refresh()
             End If
-
-
 
 
             'Handle Tests
@@ -393,7 +390,7 @@ Public Class Form1
         ListdefectsNum = DefectsList.Count
 
         Dim NumOfMaxLinks = Int(((ListdefectsNum - 1) * ListdefectsNum) / 2)
-        If (Val(DefectDefectLNK.Text)) >= NumOfMaxLinks Then
+        If (Val(DefectDefectLNK.Text)) > NumOfMaxLinks Then
             Throw New Exception("Number of Links between defects should be Less than the number choices of (number of defects select 2)." & vbCrLf & "Refresh your combinatorics")
         End If
 
@@ -923,7 +920,7 @@ Public Class Form1
         LogFile.WriteLine("<hr size=""1"" noshade>")
         LogFile.WriteLine("Log session start time: " & LoginTime & "<br><br>")
         LogFile.WriteLine("<table cellspacing=""0"" cellpadding=""4"" border=""1"" bordercolor=""#224466"" width=""100%"">")
-        LogFile.WriteLine("<tr> <th>Time</th><th>Memory Usage</th><th>Category</th><th>Message</th></tr>")
+        LogFile.WriteLine("<tr> <th>Time</th><th>Category</th><th>Message</th></tr>")
 
     End Sub
 
@@ -960,11 +957,10 @@ Public Class Form1
             End If
             Dim NowDay = Now.Date.ToString.Substring(0, 10)
             LogFile.WriteLine("<td>" & NowDay & "  " & NowTime & "</td>")
-            LogFile.WriteLine("<td>" & Int(GetMemoryUsage() / 1024) & " MB" & "</td>")
             If Category = 1 Then
                 LogFile.WriteLine("<td title=""Category"">" & "Info" & "</td>")
             Else
-                LogFile.WriteLine("<td title=""Category"">" & "Performance" & "</td>")
+                LogFile.WriteLine("<td title=""Category"" style=""color: #0F73A1"">" & "Performance" & "</td>")
             End If
             LogFile.WriteLine("<td title=""Message"">" & Message & "</td>")
             LogFile.WriteLine("</tr>")
@@ -990,6 +986,27 @@ Public Class Form1
 
     End Sub
 
+    Private Sub PingServer()
+
+        Dim ping As Ping = New Ping()
+
+        Dim subs As String = Split(ServerURL.Text, "://")(1)
+        subs = Split(subs, ":")(0)
+
+        Dim RTTAvg As Integer = 0
+
+        For i = 1 To 4
+            Dim reply As PingReply = ping.Send(subs)
+            If (reply.Status <> IPStatus.Success) Then
+                Throw New Exception("Can't Ping Server")
+            Else
+                AddEventToLog(1, "Ping to server RTT = " + reply.RoundtripTime.ToString)
+                RTTAvg += reply.RoundtripTime
+            End If
+        Next
+        RTTAvg = RTTAvg / 4
+        AddEventToLog(2, "Average RTT = " + RTTAvg.ToString)
+    End Sub
 
 End Class
 
